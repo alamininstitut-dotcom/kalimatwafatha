@@ -61,6 +61,10 @@ body{font-family:'Tajawal',sans-serif;background:var(--cream);color:var(--ink);
 .stats .stat b{display:block;font-size:1.35rem;font-weight:800;color:var(--gold);line-height:1.25}
 .stats .stat span{display:block;font-size:.76rem;font-weight:700;color:var(--ink-soft)}
 .stats .stat i{display:block;direction:ltr;font-style:normal;font-size:.68rem;color:var(--teal-deep)}
+.ttsnote{background:#F1F8F8;border:2px solid #CFE7E5;border-right:6px solid var(--teal);
+  border-radius:14px;padding:10px 14px;margin-bottom:14px;font-size:.88rem;font-weight:700;
+  color:var(--teal-deep);text-align:center}
+.ttsnote span{display:block;direction:ltr;font-size:.78rem;font-weight:700;opacity:.9}
 .stats-title{text-align:center;font-size:.86rem;font-weight:800;color:var(--ink-soft);margin-top:18px}
 .stats-title .de{display:block;direction:ltr;font-size:.76rem;color:var(--teal-deep);font-weight:700}
 
@@ -210,19 +214,45 @@ body{font-family:'Tajawal',sans-serif;background:var(--cream);color:var(--ink);
 .ws-intro .de{direction:ltr;font-size:.9rem;color:var(--teal-deep);font-weight:700;margin-top:6px}
 .sheet-page{background:#fff;border:2px solid var(--line);border-radius:16px;
   padding:20px 18px;margin-bottom:20px}
+.sheet-page{background:#fff;border:2px solid var(--line);border-radius:16px;
+  padding:18px;margin-bottom:20px;display:flex;gap:0;align-items:stretch}
+.pg-main{flex:1;min-width:0;padding-left:16px}
+.pg-cut{width:132px;flex-shrink:0;padding-right:14px;position:relative;
+  display:flex;flex-direction:column}
+.pg-cut::before{content:'';position:absolute;right:0;top:-18px;bottom:-18px;
+  border-right:2px dashed var(--ink-soft)}
+.pg-cut .cut{position:absolute;right:-11px;font-size:1.15rem;background:#fff;
+  padding:2px 0;line-height:1}
+.pg-cut .cut.top{top:-24px}
+.pg-cut .cut.bot{bottom:-24px}
+.pg-cut h4{font-family:'Tajawal',sans-serif;font-size:.78rem;font-weight:800;
+  color:var(--ink-soft);margin-bottom:9px;text-align:center}
+.pg-cut h4 span{display:block;direction:ltr;font-size:.68rem;font-weight:700}
+.key-grp{margin-bottom:14px}
+.key-grp .key-t{font-family:'Tajawal',sans-serif;font-size:.72rem;font-weight:800;
+  color:var(--gold);background:var(--sand);border-radius:8px;padding:2px 7px;
+  text-align:center;margin-bottom:4px}
+.key-grp ol{list-style:none;counter-reset:kk;font-family:'Amiri',serif;
+  font-size:1.14rem;font-weight:700}
+.key-grp li{counter-increment:kk;padding:2px 0;border-bottom:1px dotted var(--line);
+  display:flex;align-items:center;gap:6px}
+.key-grp li::before{content:counter(kk);font-family:'Tajawal',sans-serif;
+  font-size:.68rem;font-weight:800;color:var(--gold);background:var(--sand);
+  border-radius:50%;width:18px;height:18px;display:grid;place-items:center;flex-shrink:0}
+.cutnote{font-family:'Tajawal',sans-serif;font-size:.64rem;font-weight:700;
+  color:var(--ink-soft);text-align:center;margin-top:auto;padding-top:10px;line-height:1.5}
+.cutnote span{display:block;direction:ltr}
+.grp-sep{border:none;border-top:2px dashed var(--line);margin:20px 0}
+
 .sh-head{display:flex;justify-content:space-between;align-items:center;
-  border-bottom:3px solid var(--gold);padding-bottom:8px;margin-bottom:14px;flex-wrap:wrap;gap:8px}
-.sh-head .sh-name{font-family:'Tajawal',sans-serif;font-size:.84rem;font-weight:800;
-  color:var(--ink-soft);display:flex;align-items:flex-end;gap:6px;order:0}
-.sh-head .sh-name .nline{display:inline-block;width:120px;border-bottom:2px solid var(--ink-soft);height:17px}
-.sh-head .sh-mid{display:flex;flex-direction:column;align-items:center;gap:1px}
-.sh-head .sh-logo{height:42px;width:auto;object-fit:contain;flex-shrink:0;margin-right:auto}
-.sh-head .nm{font-family:'Tajawal',sans-serif;font-size:.82rem;color:var(--ink-soft);
-  font-weight:700;order:-1}
-.sh-head .t{font-family:'Amiri',serif;font-size:1.35rem;font-weight:700}
-.sh-head .l{font-family:'Amiri',serif;font-size:1.3rem;font-weight:700;color:var(--gold);letter-spacing:5px}
-.sh-body{display:flex;gap:16px}
-.sh-main{flex:1}
+  border-bottom:3px solid var(--gold);padding-bottom:8px;margin-bottom:12px;
+  flex-wrap:wrap;gap:8px}
+.sh-head .sh-logo{height:40px;width:auto;object-fit:contain;flex-shrink:0}
+.sh-head .t{font-family:'Amiri',serif;font-size:1.3rem;font-weight:700}
+.sh-head .l{font-family:'Amiri',serif;font-size:1.25rem;font-weight:700;
+  color:var(--gold);letter-spacing:5px}
+.sh-head .nm{font-family:'Tajawal',sans-serif;font-size:.8rem;color:var(--ink-soft);font-weight:700}
+
 .sh-task{background:var(--sand);border-radius:12px;padding:8px 13px;margin:12px 0 8px;
   font-size:.93rem;font-weight:800}
 .sh-task .de{display:block;direction:ltr;font-size:.8rem;font-weight:700;color:var(--teal-deep)}
@@ -234,22 +264,6 @@ body{font-family:'Tajawal',sans-serif;background:var(--cream);color:var(--ink);
   border-radius:50%;width:21px;height:21px;display:grid;place-items:center;line-height:1}
 .sh-gap{display:inline-block;min-width:54px;border-bottom:3px solid var(--ink-soft);
   margin:0 3px;vertical-align:middle;height:34px}
-.sh-key{width:126px;flex-shrink:0;padding-right:16px;position:relative}
-.sh-key::before{content:'';position:absolute;right:0;top:0;bottom:0;
-  border-right:2px dashed var(--ink-soft)}
-.sh-key .cut{position:absolute;right:-11px;font-size:1.15rem;background:#fff;
-  padding:2px 0;line-height:1}
-.sh-key .cut.top{top:-5px}
-.sh-key .cut.bot{bottom:-5px}
-.sh-key .cutnote{font-family:'Tajawal',sans-serif;font-size:.66rem;font-weight:700;
-  color:var(--ink-soft);text-align:center;margin-top:8px;line-height:1.5}
-.sh-key .cutnote span{display:block;direction:ltr}
-.sh-key h4{font-family:'Tajawal',sans-serif;font-size:.76rem;font-weight:800;
-  color:var(--ink-soft);margin-bottom:6px;text-align:center}
-.sh-key h4 span{display:block;direction:ltr;font-size:.68rem;font-weight:700}
-.sh-key ol{list-style:none;counter-reset:kk;font-family:'Amiri',serif;font-size:1.18rem;font-weight:700}
-.sh-key li{counter-increment:kk;padding:3px 0;border-bottom:1px dotted var(--line);
-  display:flex;align-items:center;gap:6px}
 .sh-notes{margin-top:18px;border:2px solid var(--line);border-radius:12px;padding:12px 14px;
   break-inside:avoid}
 .sh-notes .nt-head{font-family:'Tajawal',sans-serif;font-size:.86rem;font-weight:800;
@@ -259,9 +273,6 @@ body{font-family:'Tajawal',sans-serif;background:var(--cream);color:var(--ink);
 .sh-notes .nt-line{border-bottom:1.5px dotted var(--ink-soft);height:26px;margin-bottom:5px}
 .sh-notes .nt-foot{font-family:'Tajawal',sans-serif;font-size:.76rem;font-weight:700;
   color:var(--ink-soft);margin-top:8px}
-.sh-key li::before{content:counter(kk);font-family:'Tajawal',sans-serif;
-  font-size:.7rem;font-weight:800;color:var(--gold);background:var(--sand);
-  border-radius:50%;width:19px;height:19px;display:grid;place-items:center;flex-shrink:0}
 
 /* ===== لعبة الغيمة ===== */
 .glock{background:#fff;border:3px dashed var(--line);border-radius:20px;
@@ -390,19 +401,28 @@ body{font-family:'Tajawal',sans-serif;background:var(--cream);color:var(--ink);
   .q-card{padding:22px 12px}
   .slot{width:60px;height:58px;font-size:1.9rem}
   .chip{font-size:1.9rem;padding:5px 14px}
-  .sh-body{flex-direction:column}
-  .sh-key{width:100%;border-right:none;border-top:2px dashed var(--ink-soft);
-    padding-right:0;padding-top:10px}
-  .sh-key ol{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
-}
+  .sheet-page{flex-direction:column}
+  .pg-main{padding-left:0}
+  .pg-cut{width:100%;padding-right:0;padding-top:14px;margin-top:14px}
+  .pg-cut::before{right:auto;left:0;top:0;bottom:auto;width:100%;
+    border-right:none;border-top:2px dashed var(--ink-soft)}
+  .pg-cut .cut.top{top:-10px;right:6px}
+  .pg-cut .cut.bot{bottom:auto;top:-10px;right:auto;left:6px}
+  .key-grp ol{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+    }
 @media print{
   .topbar,.btn-row,.ws-intro,#confetti,.noprint{display:none!important}
   .screen{display:none!important}
   .screen#worksheet{display:block!important;padding:0;max-width:none}
   body{background:#fff}
-  .sheet-page{border:none;padding:0;margin:0 0 14mm;page-break-after:always;break-after:page}
+  .sheet-page{border:none;padding:0;margin:0;page-break-after:always;break-after:page;
+    min-height:96vh}
   .sheet-page:last-child{page-break-after:auto}
+  .pg-cut::before{top:0;bottom:0;border-right-color:#555}
+  .pg-cut .cut.top{top:0}
+  .pg-cut .cut.bot{bottom:0}
   .sh-item{border-color:#999}
+  .key-grp li{border-bottom-color:#bbb}
 }
 @media (prefers-reduced-motion:reduce){
   *{animation-duration:.01ms !important;transition-duration:.01ms !important}
@@ -451,6 +471,7 @@ body{font-family:'Tajawal',sans-serif;background:var(--cream);color:var(--ink);
   <p class="subtitle" id="menu-letters">—</p>
   <div class="title-rule"></div>
   <div class="gbadge"><button onclick="go('home')">↔ تَغْييرُ المَجْموعَة</button></div>
+  <div id="tts-note"></div>
 
   <div class="lesson-list">
     <button class="lesson-card" onclick="startEx1()">
@@ -716,16 +737,53 @@ const clips={};
 function clipFor(k){ const u=AUDIO[k]; if(!u) return null;
   if(!clips[k]) clips[k]=Object.assign(new Audio(u),{preload:'none'}); return clips[k]; }
 let playing=null;
+/* مِفْتاحُ كُلِّ كَلِمَةٍ → نَصُّها، لِلنُّطْقِ الآليِّ الاحْتِياطيّ */
+const WORD_OF={};
+GROUPS.forEach(g=>g.words.forEach((w,i)=>{ WORD_OF['g'+g.n+'w'+(i+1)]=w; }));
+
+/* هَلْ لِلْكَلِمَةِ تَسْجيلٌ بِصَوْتِ المُعَلِّم؟ */
+const hasRec = k => !!AUDIO[k];
+
+/* نُطْقٌ آليٌّ مِنَ المُتَصَفِّح — مُؤَقَّتٌ حَتّى تَصِلَ التَّسْجيلات */
+let ttsReady=false, ttsVoice=null;
+function initTTS(){
+  if(!('speechSynthesis' in window)) return;
+  const pickVoice=()=>{
+    const vs=speechSynthesis.getVoices();
+    ttsVoice = vs.find(v=>/^ar/i.test(v.lang)) || null;
+    ttsReady=true;
+  };
+  pickVoice();
+  if(speechSynthesis.onvoiceschanged!==undefined) speechSynthesis.onvoiceschanged=pickVoice;
+}
+function speakWord(k,btn){
+  if(!('speechSynthesis' in window)) return false;
+  const txt=WORD_OF[k]; if(!txt) return false;
+  try{
+    speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(txt);
+    u.lang='ar-SA'; if(ttsVoice) u.voice=ttsVoice;
+    u.rate=0.6; u.pitch=1.05;
+    if(btn){ btn.classList.add('playing');
+      u.onend=()=>btn.classList.remove('playing');
+      u.onerror=()=>btn.classList.remove('playing'); }
+    speechSynthesis.speak(u);
+    return true;
+  }catch(e){ return false; }
+}
+
 function play(k,btn){
-  const c=clipFor(k);
   if(playing){ playing.pause(); playing.currentTime=0; }
   document.querySelectorAll('.playing').forEach(b=>b.classList.remove('playing'));
-  if(!c) return;
+  if('speechSynthesis' in window) speechSynthesis.cancel();
+  const c=clipFor(k);
+  if(!c){ speakWord(k,btn); return; }      /* لا تَسْجيل → نُطْقٌ آليّ */
   c.currentTime=0; playing=c;
   if(btn) btn.classList.add('playing');
   const done=()=>{ if(btn) btn.classList.remove('playing'); };
-  c.onended=done; c.onerror=done;
-  const p=c.play(); if(p&&p.catch) p.catch(done);
+  c.onended=done;
+  c.onerror=()=>{ done(); speakWord(k,btn); };
+  const pr=c.play(); if(pr&&pr.catch) pr.catch(()=>{ done(); speakWord(k,btn); });
 }
 
 /* ==================== نغمات ==================== */
@@ -867,9 +925,15 @@ function buildGroups(){
       <div class="cnt">${m?'أُتْقِنَتْ ✓':`${d} / 3 تَمارين`}</div>
     </button>`;}).join('');
 }
+function ttsNote(){
+  return groupHasRec() ? '' : `
+    <div class="ttsnote">🤖 صَوْتُ هٰذِهِ المَجْموعَةِ آليٌّ مُؤَقَّتًا — تَسْجيلُ المُعَلِّمِ قَريبًا
+      <span>Vorläufig Computerstimme – die Aufnahme des Lehrers folgt</span></div>`;
+}
 function chooseGroup(i){
   gi=i;
   document.getElementById('menu-title').textContent='المَجْموعَةُ '+toAr(G().n);
+  const nt=document.getElementById('tts-note'); if(nt) nt.innerHTML=ttsNote();
   document.getElementById('menu-letters').innerHTML=
     `<span style="font-family:Amiri,serif;font-size:1.6rem;letter-spacing:6px">${hl(G().letters)}</span>`;
   go('menu');
@@ -993,9 +1057,9 @@ function startEx3(){ q3=G().words.map((w,i)=>({w,k:key(G(),i)})); i3=0; sc3=0; g
 function render3(){
   const cur=q3[i3];
   document.getElementById('q3-word').innerHTML=hl(cur.w);
-  document.getElementById('sp3').innerHTML= AUDIO[cur.k]
+  document.getElementById('sp3').innerHTML= true
     ? `<button class="btn btn-gold" onclick="play('${cur.k}', this)">🔊 اِسْتَمِعْ إلى القِراءَةِ الصَّحيحَة</button>`
-    : `<p class="tap-hint">التَّسْجيلُ سَيُضافُ قَريبًا<span class="de">Aufnahme folgt</span></p>`;
+    : '';
   document.getElementById('m3-count').textContent=`الكَلِمَة ${toAr(i3+1)} من ${toAr(q3.length)}`;
   document.getElementById('m3-score').textContent=`أَتْقَنْتُ: ${toAr(sc3)}`;
   document.getElementById('bar3').style.width=(i3/q3.length*100)+'%';
@@ -1036,52 +1100,68 @@ function playCard(i){
 function buildWS(){
   const pages=[];
   for(let i=0;i<GROUPS.length;i+=2) pages.push(GROUPS.slice(i,i+2));
-  document.getElementById('ws-pages').innerHTML=pages.map((pair,pi)=>`
+
+  const split = g => ({
+    first: g.words.filter((_,i)=>i%2===0),   /* الكلمة الأولى من كل زوج */
+    last : g.words.filter((_,i)=>i%2===1)    /* الكلمة الثانية من كل زوج */
+  });
+
+  document.getElementById('ws-pages').innerHTML = pages.map(pair=>`
     <div class="sheet-page">
-      ${pair.map(g=>{
-        const first=g.words.filter((_,i)=>i%2===0);   /* الكلمة الأولى من كل زوج */
-        const last =g.words.filter((_,i)=>i%2===1);   /* الكلمة الثانية من كل زوج */
-        const cut = w => { const u=units(w); return u; };
-        return `
-        <div class="sh-head">
-          <span class="nm">الاسْم: ________________</span>
-          <span class="t">المَجْموعَةُ ${toAr(g.n)}</span>
-          <span class="l">${g.letters}</span>
-          <img class="sh-logo" src="${LOGO}" alt="معهد الأمين">
-        </div>
-        <div class="sh-body">
-          <div class="sh-main">
-            <div class="sh-task">1 — اكْتُبِ الحَرْفَ الأَوَّلَ مَعَ فَتْحَتِه
-              <span class="de">Schreibe den ersten Buchstaben mit Fatha</span></div>
-            <div class="sh-grid">
-              ${first.map((w,ix)=>{const u=cut(w);
-                return `<div class="sh-item"><span class="no">${toAr(ix+1)}</span>
-                  <span class="sh-gap"></span>${u[1]}${u[2]}</div>`;}).join('')}
-            </div>
-            <div class="sh-task">2 — اكْتُبِ الحَرْفَ الأَخيرَ مَعَ فَتْحَتِه
-              <span class="de">Schreibe den letzten Buchstaben mit Fatha</span></div>
-            <div class="sh-grid">
-              ${last.map((w,ix)=>{const u=cut(w);
-                return `<div class="sh-item"><span class="no">${toAr(first.length+ix+1)}</span>
-                  ${u[0]}${u[1]}<span class="sh-gap"></span></div>`;}).join('')}
-            </div>
+
+      <!-- ===== الجِهَةُ اليُمْنى: وَرَقَةُ الطِّفْل ===== -->
+      <div class="pg-main">
+        ${pair.map((g,gx)=>{
+          const {first,last}=split(g);
+          return `
+          <div class="sh-head">
+            <img class="sh-logo" src="${LOGO}" alt="معهد الأمين">
+            <span class="t">المَجْموعَةُ ${toAr(g.n)}</span>
+            <span class="l">${g.letters}</span>
+            <span class="nm">الاسْم: ________________</span>
           </div>
-          <div class="sh-key">
-            <span class="cut top">✂️</span><span class="cut bot">✂️</span>
-            <h4>لِلْأَهْل<span>für die Eltern</span></h4>
-            <ol>${[...first,...last].map(w=>`<li>${w}</li>`).join('')}</ol>
-            <p class="cutnote">قُصَّ هُنا قَبْلَ إِعْطاءِ الوَرَقَةِ لِلطِّفْل
-              <span>Hier abschneiden</span></p>
+          <div class="sh-task">1 — اكْتُبِ الحَرْفَ الأَوَّلَ مَعَ فَتْحَتِه
+            <span class="de">Schreibe den ersten Buchstaben mit Fatha</span></div>
+          <div class="sh-grid">
+            ${first.map((w,ix)=>{const u=units(w);
+              return `<div class="sh-item"><span class="no">${toAr(ix+1)}</span>
+                <span class="sh-gap"></span>${u[1]}${u[2]}</div>`;}).join('')}
           </div>
+          <div class="sh-task">2 — اكْتُبِ الحَرْفَ الأَخيرَ مَعَ فَتْحَتِه
+            <span class="de">Schreibe den letzten Buchstaben mit Fatha</span></div>
+          <div class="sh-grid">
+            ${last.map((w,ix)=>{const u=units(w);
+              return `<div class="sh-item"><span class="no">${toAr(first.length+ix+1)}</span>
+                ${u[0]}${u[1]}<span class="sh-gap"></span></div>`;}).join('')}
+          </div>
+          ${gx===0&&pair.length>1?'<hr class="grp-sep">':''}`;
+        }).join('')}
+
+        <div class="sh-notes">
+          <div class="nt-head">📝 مُلاحَظاتُ الأَهْلِ لِلْمُعَلِّم
+            <span>Notizen der Eltern für die Lehrkraft</span></div>
+          <div class="nt-line"></div><div class="nt-line"></div><div class="nt-line"></div>
+          <div class="nt-foot">تَوْقيعُ الأَهْل: ____________ &nbsp;&nbsp; التّاريخ: ____________</div>
         </div>
-        ${pair.length>1&&g===pair[0]?'<hr style="border:none;border-top:2px dashed var(--line);margin:18px 0">':''}`;
-      }).join('')}
-      <div class="sh-notes">
-        <div class="nt-head">📝 مُلاحَظاتُ الأَهْلِ لِلْمُعَلِّم
-          <span>Notizen der Eltern für die Lehrkraft</span></div>
-        <div class="nt-line"></div><div class="nt-line"></div><div class="nt-line"></div>
-        <div class="nt-foot">تَوْقيعُ الأَهْل: ____________ &nbsp;&nbsp; التّاريخ: ____________</div>
       </div>
+
+      <!-- ===== الجِهَةُ اليُسْرى: شَريطُ القَصِّ لِلْأَهْل ===== -->
+      <div class="pg-cut">
+        <span class="cut top">✂️</span>
+        <span class="cut bot">✂️</span>
+        <h4>لِلْأَهْل<span>für die Eltern</span></h4>
+        ${pair.map(g=>{
+          const {first,last}=split(g);
+          return `
+          <div class="key-grp">
+            <div class="key-t">المَجْموعَةُ ${toAr(g.n)}</div>
+            <ol>${[...first,...last].map(w=>`<li>${w}</li>`).join('')}</ol>
+          </div>`;
+        }).join('')}
+        <p class="cutnote">قُصَّ هٰذا الشَّريطَ قَبْلَ إِعْطاءِ الوَرَقَةِ لِلطِّفْل
+          <span>Diesen Streifen vor dem Üben abschneiden</span></p>
+      </div>
+
     </div>`).join('');
 }
 
@@ -1113,12 +1193,14 @@ function toggleAll(){
 function gPool(){
   const src = gAll ? GROUPS : [G()];
   const out=[];
-  src.forEach(g=>g.words.forEach((w,i)=>{ const k=key(g,i); if(AUDIO[k]) out.push({w,k}); }));
+  src.forEach(g=>g.words.forEach((w,i)=>{ out.push({w, k:key(g,i)}); }));
   return out;
 }
 let gSpoken=null, gFall=null, gMatch=false, gLock=false, gTimer=null, gY=0;
 
-function groupHasAudio(){ return G().words.some((w,i)=>AUDIO[key(G(),i)]); }
+/* الصَّوْتُ مُتاحٌ دائِمًا: تَسْجيلُ المُعَلِّمِ أَوْ نُطْقٌ آليٌّ مُؤَقَّت */
+function groupHasAudio(){ return true; }
+function groupHasRec(){ return G().words.some((w,i)=>AUDIO[key(G(),i)]); }
 
 function playNow(){
   document.getElementById('game-intro').style.display='none';
@@ -1324,6 +1406,7 @@ buildGroups();
 buildWS();
 drawPoints();
 drawStats();
+initTTS();
 document.addEventListener('click',()=>{ try{ audio(); }catch(e){} },{once:true});
 </script>
 </body>
