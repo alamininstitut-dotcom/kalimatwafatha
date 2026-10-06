@@ -274,121 +274,331 @@ body{font-family:'Tajawal',sans-serif;background:var(--cream);color:var(--ink);
 .sh-notes .nt-foot{font-family:'Tajawal',sans-serif;font-size:.76rem;font-weight:700;
   color:var(--ink-soft);margin-top:8px}
 
-/* ===== لعبة الغيمة ===== */
-.glock{background:#fff;border:3px dashed var(--line);border-radius:20px;
-  padding:22px 18px;text-align:center}
-.glock .e{font-size:2.8rem;opacity:.5;line-height:1.2}
-.glock b{display:block;font-family:'Amiri',serif;font-size:1.3rem;margin-top:4px}
-.glock p{font-size:.92rem;font-weight:700;color:var(--ink-soft);margin-top:4px}
-.glock .de{direction:ltr;font-size:.82rem;color:var(--teal-deep);font-weight:700}
-
-.gwrap{background:linear-gradient(180deg,#CFE9F7 0%,#E6F4F3 52%,#FFF3D8 100%);
+/* ===== لعبة صيد الحرف ===== */
+.sea{background:linear-gradient(180deg,#BFE6F5 0%,#7FC9E8 20%,#3E9FCB 60%,#1F6B96 100%);
   border:3px solid var(--teal);border-radius:24px;position:relative;overflow:hidden;
-  height:min(82vh,680px);min-height:480px;user-select:none}
-.gtop{position:absolute;top:0;left:0;right:0;z-index:7;display:flex;
-  justify-content:space-between;align-items:center;gap:8px;padding:7px 12px;
-  background:rgba(255,255,255,.82);backdrop-filter:blur(4px);
-  font-family:'Tajawal',sans-serif;font-weight:800;font-size:.93rem}
-.gtop .hearts{letter-spacing:2px;font-size:1.05rem}
-.gsound{background:var(--gold);color:#fff;border:none;border-radius:50%;
-  width:40px;height:40px;font-size:1.25rem;cursor:pointer;display:grid;place-items:center;
-  box-shadow:0 3px 8px rgba(43,33,24,.2);transition:transform .12s;flex-shrink:0}
-.gsound:hover{transform:scale(1.08)}
-.gsound.playing{animation:ring 1s ease-in-out infinite}
-.gexit{background:transparent;border:2px solid var(--line);border-radius:50%;
-  width:32px;height:32px;font-size:.92rem;cursor:pointer;color:var(--ink-soft);
-  display:grid;place-items:center;flex-shrink:0}
-.gexit:hover{background:var(--sand)}
+  height:min(74vh,580px);min-height:430px;user-select:none}
+.fTop{position:absolute;top:0;left:0;right:0;z-index:9;display:flex;
+  justify-content:space-between;align-items:center;padding:7px 13px;gap:8px;
+  background:rgba(255,255,255,.85);backdrop-filter:blur(4px);
+  font-family:'Tajawal',sans-serif;font-weight:800;font-size:.92rem}
+.fTop .hearts{letter-spacing:2px;font-size:1.05rem}
 
-.cloud{position:absolute;top:52px;left:50%;transform:translateX(-50%);z-index:2}
-.cloud img{width:min(160px,42vw);height:auto;display:block;
-  filter:drop-shadow(0 4px 8px rgba(43,33,24,.14))}
+/* مَوْجَةُ السَّطْح */
+.wave{position:absolute;top:38px;left:0;width:200%;height:26px;z-index:2;
+  background:radial-gradient(ellipse 50px 26px at 25px 26px, transparent 60%, rgba(255,255,255,.5) 61%) repeat-x;
+  background-size:50px 26px;animation:waveMove 7s linear infinite;opacity:.75}
+.wave.w2{top:50px;animation-duration:11s;animation-direction:reverse;opacity:.4}
+@keyframes waveMove{to{transform:translateX(-50%)}}
 
-.gspk{background:var(--gold);color:#fff;border:none;border-radius:50%;
-  width:40px;height:40px;font-size:1.25rem;cursor:pointer;flex-shrink:0;
-  box-shadow:0 3px 8px rgba(43,33,24,.2);transition:transform .15s}
-.gspk:hover{transform:scale(1.08)}
-.gspk.playing{animation:ring 1s ease-in-out infinite}
-.gexit{background:rgba(0,0,0,.06);border:none;border-radius:50%;width:32px;height:32px;
-  font-size:1rem;cursor:pointer;color:var(--ink-soft);flex-shrink:0}
-.gexit:hover{background:rgba(0,0,0,.12)}
+/* زِرُّ السَّماعِ الكَبير */
+.fSpeak{position:absolute;top:66px;left:50%;transform:translateX(-50%);z-index:8;
+  width:104px;height:104px;border-radius:50%;cursor:pointer;
+  background:radial-gradient(circle at 35% 30%, #FFE9A8, var(--gold));
+  border:5px solid #fff;box-shadow:0 8px 20px rgba(0,0,0,.28);
+  display:grid;place-items:center;font-size:2.7rem;transition:transform .15s}
+.fSpeak:hover{transform:translateX(-50%) translateY(-3px)}
+.fSpeak.playing{animation:pulseS 1.1s ease-in-out infinite}
+@keyframes pulseS{0%,100%{box-shadow:0 8px 20px rgba(0,0,0,.28),0 0 0 0 rgba(255,255,255,.65)}
+  50%{box-shadow:0 8px 20px rgba(0,0,0,.28),0 0 0 20px rgba(255,255,255,0)}}
+.fSpeakLbl{position:absolute;top:176px;left:50%;transform:translateX(-50%);z-index:8;
+  font-family:'Tajawal',sans-serif;font-size:.8rem;font-weight:800;color:#fff;
+  text-shadow:0 1px 3px rgba(0,0,0,.4);white-space:nowrap}
+.fReveal{position:absolute;top:66px;left:50%;transform:translateX(-50%);z-index:8;
+  font-family:'Amiri',serif;font-size:3.2rem;font-weight:700;color:var(--gold);
+  background:rgba(255,255,255,.96);border:5px solid var(--gold);border-radius:22px;
+  padding:4px 26px;display:none;animation:pop .4s}
+.fReveal.show{display:block}
 
-/* بطاقة الشرح */
-.intro{background:#fff;border:3px solid var(--teal);border-radius:24px;
-  padding:20px 18px;box-shadow:var(--shadow)}
-.istep{display:flex;gap:12px;align-items:flex-start;padding:12px 0;
-  border-bottom:1px dashed var(--line)}
-.istep:last-of-type{border-bottom:none}
-.istep .n{flex-shrink:0;width:32px;height:32px;border-radius:50%;background:var(--teal);
-  color:#fff;display:grid;place-items:center;font-weight:800;font-size:1rem}
-.istep b{display:block;font-family:'Amiri',serif;font-size:1.3rem;font-weight:700;line-height:1.5}
-.istep p{font-size:.94rem;line-height:1.85;margin-top:2px}
-.istep p.de{direction:ltr;font-size:.84rem;color:var(--teal-deep);font-weight:700;margin-top:3px}
-.iboxes{display:flex;gap:10px;margin:10px 0}
-.ibox{flex:1;border:3px solid var(--gold);background:#FFFAEC;border-radius:16px;
-  padding:10px 6px;text-align:center}
-.ibox.t{border-color:var(--ink-soft);background:#F5F1E8}
-.ibox img{width:min(58px,15vw);height:auto;display:block;margin:0 auto 3px}
-.ibox b{font-family:'Amiri',serif;font-size:1.12rem;display:block}
-.ibox span{display:block;font-size:.8rem;font-weight:800;color:var(--ink-soft)}
-.ibox i{display:block;direction:ltr;font-style:normal;font-size:.7rem;color:var(--teal-deep);font-weight:700}
+.ftime{position:absolute;top:202px;left:50%;transform:translateX(-50%);z-index:8;
+  width:min(72%,280px);height:11px;background:rgba(255,255,255,.5);
+  border-radius:99px;overflow:hidden;border:2px solid rgba(255,255,255,.82)}
+.ftime i{display:block;height:100%;width:100%;border-radius:99px;
+  background:linear-gradient(90deg,#8BD16E,var(--gold));transition:width .2s linear}
+.ftime i.low{background:linear-gradient(90deg,var(--gold),var(--red))}
 
-.gfall{position:absolute;left:50%;z-index:4;
-  font-family:'Amiri',serif;font-weight:700;font-size:clamp(1.3rem,5vw,1.75rem);
-  background:#fff;border:3px solid var(--gold);border-radius:14px;padding:5px 16px;
-  white-space:nowrap;box-shadow:0 4px 12px rgba(43,33,24,.16);
-  transform:translateX(-50%);will-change:top,transform}
-.gfall.fly{transition:transform .55s cubic-bezier(.4,0,.6,1), opacity .55s ease;opacity:0}
-.gfall.bad{animation:shake .4s}
+/* الأَسْماك */
+.fish{position:absolute;z-index:5;cursor:pointer;border:none;background:none;padding:0;
+  font-family:'Amiri',serif;font-weight:700;font-size:clamp(1.05rem,4.1vw,1.4rem);
+  white-space:nowrap;transition:transform .15s}
+.fish .body{display:flex;align-items:center;gap:6px;padding:6px 16px 6px 11px;
+  border-radius:999px 999px 999px 999px;box-shadow:0 3px 10px rgba(0,0,0,.25);
+  border:3px solid rgba(255,255,255,.85);color:#1b2a33}
+.fish .fin{font-size:.95rem;opacity:.9}
+.fish:hover{transform:scale(1.07)}
+.fish.caught{transition:all .75s cubic-bezier(.3,0,.5,1)}
+.fish.flee{animation:fleeShake .5s}
+@keyframes fleeShake{0%,100%{transform:translateX(0) rotate(0)}
+  25%{transform:translateX(-9px) rotate(-6deg)}75%{transform:translateX(9px) rotate(6deg)}}
 
-.gears{position:absolute;bottom:0;left:0;right:0;display:flex;gap:14px;
-  padding:10px 14px 16px;z-index:5}
-.gbox{flex:1;border-radius:20px;padding:9px 6px 11px;cursor:pointer;text-align:center;
-  font-family:'Tajawal',sans-serif;font-weight:800;font-size:.88rem;
-  border:4px solid var(--gold);background:rgba(255,250,236,.96);color:var(--gold);
-  transition:transform .12s,filter .12s}
-.gbox img{width:min(70px,18vw);height:auto;display:block;margin:0 auto 2px}
-.gbox.trash{border-color:var(--ink-soft);background:rgba(244,239,229,.96);color:var(--ink-soft)}
-.gbox small{display:block;font-size:.7rem;font-weight:700;opacity:.75;direction:ltr}
-.gbox:hover{transform:translateY(-3px)}
-.gbox.hit{filter:brightness(1.12);transform:scale(1.05)}
-.gbox:disabled{cursor:default}
+/* السِّنّارَةُ والحَبْل */
+.rope{position:absolute;top:0;width:3px;z-index:4;
+  background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(255,255,255,.6));
+  height:0;opacity:0;transform:translateX(-50%);border-radius:2px}
+.rope.go{transition:height .6s cubic-bezier(.4,0,.6,1);opacity:1}
+.hook{position:absolute;z-index:6;font-size:1.7rem;transform:translate(-50%,-6px);
+  opacity:0;top:0}
+.hook.go{transition:top .6s cubic-bezier(.4,0,.6,1);opacity:1}
 
-.gpop{position:absolute;z-index:8;left:50%;transform:translateX(-50%);
-  font-family:'Tajawal',sans-serif;font-weight:800;font-size:1.05rem;text-align:center;
-  background:rgba(255,255,255,.9);border-radius:12px;padding:5px 14px;
-  animation:rise 1s ease-out forwards;pointer-events:none;white-space:nowrap}
-@keyframes rise{to{transform:translateX(-50%) translateY(-46px);opacity:0}}
-.gover{position:absolute;inset:0;z-index:9;background:rgba(255,253,248,.96);
+/* الفَقاعات */
+.bub{position:absolute;bottom:-26px;z-index:3;border-radius:50%;
+  background:radial-gradient(circle at 32% 30%, rgba(255,255,255,.92), rgba(255,255,255,.25));
+  border:1px solid rgba(255,255,255,.55);animation:bubUp linear forwards;pointer-events:none}
+@keyframes bubUp{to{transform:translateY(-110%) translateX(var(--bx,0));opacity:0}}
+
+.fpop{position:absolute;z-index:10;left:50%;transform:translateX(-50%);
+  font-family:'Tajawal',sans-serif;font-weight:800;font-size:1.02rem;
+  background:rgba(255,255,255,.93);border-radius:12px;padding:5px 14px;white-space:nowrap;
+  animation:rise 1s ease-out forwards;pointer-events:none}
+.fover{position:absolute;inset:0;z-index:11;background:rgba(255,253,248,.96);
   display:grid;place-items:center;text-align:center;padding:20px}
-.gover h3{font-family:'Amiri',serif;font-size:1.9rem}
-.ghint{text-align:center;font-size:.89rem;font-weight:700;color:var(--ink-soft);margin-top:12px}
-.ghint .de{display:block;direction:ltr;font-size:.8rem;color:var(--teal-deep)}
-.howto{background:#fff;border:3px solid var(--line);border-radius:22px;padding:20px 18px;
-  box-shadow:var(--shadow)}
-.ht-imgs{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
-.ht-i{text-align:center;flex:1;min-width:92px}
-.ht-i img{width:min(84px,22vw);height:auto;display:block;margin:0 auto 3px}
-.ht-i span{font-family:'Tajawal',sans-serif;font-size:.82rem;font-weight:800;color:var(--ink)}
-.ht-i i{display:block;direction:ltr;font-style:normal;font-size:.7rem;font-weight:700;color:var(--teal-deep)}
-.ht-steps{list-style:none;counter-reset:ht;display:flex;flex-direction:column;gap:11px}
-.ht-steps li{counter-increment:ht;display:flex;gap:10px;align-items:flex-start;
-  font-size:1rem;line-height:1.85;background:var(--sand);border-radius:14px;padding:10px 13px}
-.ht-steps li::before{content:counter(ht);flex-shrink:0;width:26px;height:26px;margin-top:4px;
-  background:var(--gold);color:#fff;border-radius:50%;display:grid;place-items:center;
-  font-family:'Tajawal',sans-serif;font-size:.82rem;font-weight:800}
-.ht-steps .de{display:block;direction:ltr;font-size:.83rem;font-weight:700;color:var(--teal-deep)}
-.ht-set{margin-top:18px;border-top:2px dashed var(--line);padding-top:14px}
-.setrow{display:flex;gap:9px;justify-content:center;align-items:center;margin-top:9px;flex-wrap:wrap}
-.setrow .lbl{font-family:'Tajawal',sans-serif;font-size:.82rem;font-weight:800;color:var(--ink-soft)}
-.setrow .lbl i{display:block;direction:ltr;font-style:normal;font-size:.68rem;color:var(--teal-deep)}
-.spd{font-family:'Tajawal',sans-serif;font-size:.88rem;font-weight:800;
-  background:#fff;border:2px solid var(--line);border-radius:999px;padding:6px 16px;
-  cursor:pointer;color:var(--ink-soft);transition:all .2s}
-.spd small{display:block;font-size:.66rem;font-weight:700;opacity:.7;direction:ltr}
-.spd.on{background:var(--teal);border-color:var(--teal);color:#fff}
-.spd.wide{background:#FFF8E6;border-color:var(--gold);color:var(--gold)}
-.spd.wide.on{background:var(--gold);color:#fff}
+.fover h3{font-family:'Amiri',serif;font-size:1.9rem}
+.fexit{position:absolute;top:7px;left:50%;transform:translateX(-50%);z-index:12;
+  background:rgba(255,255,255,.9);border:2px solid var(--line);border-radius:50%;
+  width:30px;height:30px;font-size:.9rem;cursor:pointer;display:none;place-items:center}
+.fexit.show{display:grid}
+
+/* ===== لعبة قطار الحروف ===== */
+.skyband{position:absolute;top:0;left:0;right:0;height:46%;z-index:0;overflow:hidden;
+  pointer-events:none;opacity:.5;
+  -webkit-mask-image:linear-gradient(180deg,#000 55%,transparent 100%);
+  mask-image:linear-gradient(180deg,#000 55%,transparent 100%)}
+.skyband video{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.8)}
+
+.rail{background:linear-gradient(180deg,#CFEAF7 0%,#E9F6EE 46%,#F6EBD0 100%);
+  border:3px solid var(--teal);border-radius:24px;position:relative;overflow:hidden;
+  height:min(74vh,580px);min-height:440px;user-select:none;
+  display:flex;flex-direction:column}
+.tTop{position:absolute;top:0;left:0;right:0;z-index:9;display:flex;
+  justify-content:space-between;align-items:center;padding:7px 13px;gap:8px;
+  background:rgba(255,255,255,.86);backdrop-filter:blur(4px);
+  font-family:'Tajawal',sans-serif;font-weight:800;font-size:.92rem}
+.tTop .hearts{letter-spacing:2px;font-size:1.05rem}
+
+.tSpeak{margin:52px auto 0;width:88px;height:88px;border-radius:50%;cursor:pointer;
+  background:radial-gradient(circle at 35% 30%, #FFE9A8, var(--gold));
+  border:5px solid #fff;box-shadow:0 7px 18px rgba(0,0,0,.22);
+  display:grid;place-items:center;font-size:2.3rem;transition:transform .15s;z-index:6}
+.tSpeak:hover{transform:translateY(-3px)}
+.tSpeak.playing{animation:pulseS 1.1s ease-in-out infinite}
+.tLbl{text-align:center;font-family:'Tajawal',sans-serif;font-size:.8rem;font-weight:800;
+  color:var(--ink-soft);margin-top:5px}
+
+/* مَشْهَدُ القِطار */
+.scene{position:relative;flex:1;margin-top:8px}
+.station{position:absolute;bottom:52px;right:0;z-index:3;text-align:center}
+.station img{width:min(120px,30vw);height:auto;display:block;
+  filter:drop-shadow(0 3px 6px rgba(43,33,24,.2))}
+.track{position:absolute;bottom:52px;left:0;right:0;height:7px;z-index:2;
+  background:repeating-linear-gradient(90deg,#8a7a63 0 12px,#c9bba3 12px 22px);
+  border-top:3px solid #6b5c4a}
+.train{position:absolute;bottom:59px;z-index:4;display:flex;align-items:flex-end;
+  gap:5px;flex-direction:row;direction:ltr;transition:none}
+.loco{font-size:2.6rem;line-height:1;transform:scaleX(-1)}
+.wagon{width:66px;height:62px;border:4px dashed #9b8a70;border-radius:12px 12px 7px 7px;
+  background:rgba(255,255,255,.94);display:grid;place-items:center;
+  font-family:'Amiri',serif;font-size:1.9rem;font-weight:700;line-height:1.3;
+  box-shadow:0 3px 7px rgba(0,0,0,.14);cursor:pointer;position:relative}
+.wagon::after{content:'';position:absolute;bottom:-9px;left:7px;right:7px;height:9px;
+  background:radial-gradient(circle at 20% 50%, #4b4b4b 0 5px, transparent 6px),
+             radial-gradient(circle at 80% 50%, #4b4b4b 0 5px, transparent 6px)}
+.wagon.filled{border-style:solid;border-color:var(--teal);background:#fff}
+.wagon.ok{background:var(--green);border-color:var(--green);color:#fff;animation:pop .35s}
+.wagon .wno{position:absolute;top:3px;right:6px;font-family:'Tajawal',sans-serif;
+  font-size:.66rem;font-weight:800;color:#b3a68d}
+.wagon.filled .wno,.wagon.ok .wno{display:none}
+.wagon.next{animation:wagPulse 1.1s ease-in-out infinite;border-color:var(--gold)}
+@keyframes wagPulse{0%,100%{box-shadow:0 3px 7px rgba(0,0,0,.14)}
+  50%{box-shadow:0 3px 7px rgba(0,0,0,.14),0 0 0 7px rgba(200,151,10,.22)}}
+.wagon .cargo{position:absolute;top:-17px;left:50%;transform:translateX(-50%);
+  font-size:.95rem;white-space:nowrap;line-height:1}
+.train.shake{animation:shake .45s}
+
+/* الدُّخان */
+.puff{position:absolute;z-index:5;border-radius:50%;background:rgba(255,255,255,.8);
+  animation:puffUp 1.5s ease-out forwards;pointer-events:none}
+@keyframes puffUp{0%{opacity:.85;transform:scale(.5)}
+  100%{opacity:0;transform:translate(14px,-62px) scale(2.1)}}
+
+
+.tBank{display:flex;gap:11px;justify-content:center;flex-wrap:wrap;
+  padding:10px 12px 14px;z-index:6;background:rgba(255,255,255,.55);
+  border-top:2px dashed rgba(107,92,74,.3)}
+.tChip{font-family:'Amiri',serif;font-size:2rem;font-weight:700;line-height:1.3;
+  background:#fff;border:3px solid var(--gold);border-radius:14px;padding:4px 16px;
+  cursor:pointer;box-shadow:0 3px 8px rgba(0,0,0,.12);transition:transform .15s}
+.tChip:hover{transform:translateY(-3px)}
+
+.tpop{position:absolute;z-index:10;left:50%;transform:translateX(-50%);
+  font-family:'Tajawal',sans-serif;font-weight:800;font-size:1.05rem;
+  background:rgba(255,255,255,.93);border-radius:12px;padding:5px 14px;white-space:nowrap;
+  animation:rise 1s ease-out forwards;pointer-events:none}
+.tover{position:absolute;inset:0;z-index:11;background:rgba(255,253,248,.96);
+  display:grid;place-items:center;text-align:center;padding:20px}
+.tover h3{font-family:'Amiri',serif;font-size:1.9rem}
+.texit{position:absolute;top:7px;left:50%;transform:translateX(-50%);z-index:12;
+  background:rgba(255,255,255,.9);border:2px solid var(--line);border-radius:50%;
+  width:30px;height:30px;font-size:.9rem;cursor:pointer;display:none;place-items:center}
+.texit.show{display:grid}
+
+/* ===== لعبة المتشابهات ===== */
+.twin{background:linear-gradient(180deg,#F3EAFB 0%,#EAF4FB 50%,#FFF6E4 100%);
+  border:3px solid var(--grape,#B69BFF);border-radius:24px;position:relative;overflow:hidden;
+  height:min(72vh,560px);min-height:430px;user-select:none;
+  display:flex;flex-direction:column}
+.wTop{position:absolute;top:0;left:0;right:0;z-index:9;display:flex;
+  justify-content:space-between;align-items:center;padding:7px 13px;gap:8px;
+  background:rgba(255,255,255,.86);backdrop-filter:blur(4px);
+  font-family:'Tajawal',sans-serif;font-weight:800;font-size:.92rem}
+.wTop .hearts{letter-spacing:2px;font-size:1.05rem}
+.wStreak{font-family:'Tajawal',sans-serif;font-size:.86rem;font-weight:800;
+  color:var(--gold);background:#FFF8E6;border:2px solid var(--gold-soft);
+  border-radius:999px;padding:2px 11px;opacity:0;transition:opacity .25s,transform .25s}
+.wStreak.on{opacity:1}
+.wStreak.hot{animation:streakPop .45s}
+@keyframes streakPop{0%{transform:scale(1)}45%{transform:scale(1.18)}100%{transform:scale(1)}}
+
+.wSpeak{margin:54px auto 0;width:96px;height:96px;border-radius:50%;cursor:pointer;
+  background:radial-gradient(circle at 35% 30%, #FFE9A8, var(--gold));
+  border:5px solid #fff;box-shadow:0 7px 18px rgba(0,0,0,.22);
+  display:grid;place-items:center;font-size:2.5rem;transition:transform .15s;z-index:6}
+.wSpeak:hover{transform:translateY(-3px)}
+.wSpeak.playing{animation:pulseS 1.1s ease-in-out infinite}
+.wLbl{text-align:center;font-family:'Tajawal',sans-serif;font-size:.8rem;font-weight:800;
+  color:var(--ink-soft);margin-top:5px}
+
+.wtime{width:min(72%,290px);height:12px;background:rgba(255,255,255,.65);
+  border-radius:99px;overflow:hidden;border:2px solid rgba(0,0,0,.08);margin:12px auto 0}
+.wtime i{display:block;height:100%;width:100%;border-radius:99px;
+  background:linear-gradient(90deg,#8BD16E,var(--gold));transition:width .2s linear}
+.wtime i.low{background:linear-gradient(90deg,var(--gold),var(--red))}
+
+.wPair{flex:1;display:flex;align-items:center;justify-content:center;gap:16px;
+  padding:14px 14px 22px;flex-wrap:wrap}
+.wCard{flex:1;min-width:122px;max-width:220px;background:#fff;
+  border:4px solid var(--line);border-radius:22px;padding:22px 10px;cursor:pointer;
+  font-family:'Amiri',serif;font-size:clamp(1.7rem,7.5vw,2.5rem);font-weight:700;
+  line-height:1.5;box-shadow:0 5px 14px rgba(43,33,24,.12);
+  transition:transform .15s,border-color .2s,background .2s}
+.wCard:hover:not(:disabled){transform:translateY(-4px);border-color:var(--teal)}
+.wCard.right{background:var(--green);border-color:var(--green);color:#fff;animation:pop .45s}
+.wCard.wrong{opacity:.4;border-color:var(--red);cursor:not-allowed;animation:shake .45s}
+.wCard:disabled{cursor:default}
+.wDiff{color:var(--red)}
+
+.wpop{position:absolute;z-index:10;left:50%;transform:translateX(-50%);
+  font-family:'Tajawal',sans-serif;font-weight:800;font-size:1.05rem;
+  background:rgba(255,255,255,.93);border-radius:12px;padding:5px 14px;white-space:nowrap;
+  animation:rise 1s ease-out forwards;pointer-events:none}
+.wover{position:absolute;inset:0;z-index:11;background:rgba(255,253,248,.96);
+  display:grid;place-items:center;text-align:center;padding:20px}
+.wover h3{font-family:'Amiri',serif;font-size:1.9rem}
+.wexit{position:absolute;top:7px;left:50%;transform:translateX(-50%);z-index:12;
+  background:rgba(255,255,255,.9);border:2px solid var(--line);border-radius:50%;
+  width:30px;height:30px;font-size:.9rem;cursor:pointer;display:none;place-items:center}
+.wexit.show{display:grid}
+
+/* ===== لعبة سباق القراءة ===== */
+.race{background:linear-gradient(180deg,#FFFDF8 0%,#F4F9FC 55%,#EDF6EF 100%);
+  border:3px solid var(--gold);border-radius:24px;position:relative;overflow:hidden;
+  min-height:470px;user-select:none;padding:46px 12px 14px;
+  display:flex;flex-direction:column}
+.rTop{position:absolute;top:0;left:0;right:0;z-index:9;display:flex;
+  justify-content:space-between;align-items:center;padding:7px 13px;gap:8px;
+  background:rgba(255,255,255,.88);backdrop-filter:blur(4px);
+  font-family:'Tajawal',sans-serif;font-weight:800;font-size:.9rem}
+.rTop .hearts{letter-spacing:2px;font-size:1.05rem}
+.rRound{background:var(--gold);color:#fff;border-radius:999px;padding:2px 12px;font-size:.84rem}
+
+.rSpeak{margin:6px auto 0;width:84px;height:84px;border-radius:50%;cursor:pointer;
+  background:radial-gradient(circle at 36% 30%, #A8C8FF, #6C9BEF);
+  border:4px solid #fff;box-shadow:0 7px 16px rgba(0,0,0,.2);
+  display:grid;place-items:center;font-size:2.2rem;color:#fff;transition:transform .15s}
+.rSpeak:hover{transform:translateY(-3px)}
+.rSpeak.playing{animation:pulseS 1.1s ease-in-out infinite}
+
+.rGrid{flex:1;display:grid;gap:9px;justify-content:center;align-content:center;
+  padding:12px 2px;grid-template-columns:repeat(3,minmax(78px,108px))}
+.rCard{aspect-ratio:3/4;border:3px solid var(--line);border-radius:16px;background:#fff;
+  box-shadow:0 4px 10px rgba(43,33,24,.12);cursor:pointer;display:grid;place-items:center;
+  font-family:'Amiri',serif;font-weight:700;line-height:1.45;
+  font-size:clamp(.98rem,3.3vw,1.3rem);padding:4px;
+  transition:transform .14s,border-color .18s,background .18s,opacity .25s}
+.rCard:hover:not(:disabled){transform:translateY(-4px);border-color:var(--teal)}
+.rCard.right{background:var(--green);border-color:var(--green);color:#fff;animation:pop .4s}
+.rCard.wrong{opacity:.35;border-color:var(--red);cursor:not-allowed;animation:shake .4s}
+.rCard.flash{animation:flashGreen .7s 2}
+@keyframes flashGreen{0%,100%{background:#fff}50%{background:#CFEFD8;border-color:var(--green)}}
+.rCard:disabled{cursor:default}
+
+/* عَدّادُ السُّرْعَة */
+.gauge{width:124px;margin:4px auto 0;position:relative}
+.gauge svg{width:100%;height:auto;display:block}
+.gauge .needle{transform-origin:62px 62px;transition:transform .18s linear}
+.gauge .gtxt{text-align:center;font-family:'Tajawal',sans-serif;font-size:.78rem;
+  font-weight:800;color:var(--ink-soft);margin-top:-16px}
+
+.rpop{position:absolute;z-index:10;left:50%;transform:translateX(-50%);
+  font-family:'Tajawal',sans-serif;font-weight:800;font-size:1.02rem;
+  background:rgba(255,255,255,.94);border-radius:12px;padding:5px 14px;white-space:nowrap;
+  animation:rise 1s ease-out forwards;pointer-events:none}
+.rover{position:absolute;inset:0;z-index:11;background:rgba(255,253,248,.96);
+  display:grid;place-items:center;text-align:center;padding:20px}
+.rover h3{font-family:'Amiri',serif;font-size:1.9rem}
+.rexit{position:absolute;top:7px;left:50%;transform:translateX(-50%);z-index:12;
+  background:rgba(255,255,255,.9);border:2px solid var(--line);border-radius:50%;
+  width:30px;height:30px;font-size:.9rem;cursor:pointer;display:none;place-items:center}
+.rexit.show{display:grid}
+@media (max-width:430px){ .rGrid{grid-template-columns:repeat(3,minmax(70px,92px));gap:7px} }
+
+/* ===== زر اللغة واسم المستخدم ===== */
+.langbtn,.userbtn{font-family:'Tajawal',sans-serif;font-size:.86rem;font-weight:800;
+  background:#fff;border:2px solid var(--line);border-radius:999px;
+  padding:5px 13px;cursor:pointer;color:var(--ink);transition:all .2s}
+.langbtn:hover,.userbtn:hover{border-color:var(--teal)}
+.userbtn{background:var(--sand)}
+
+/* إِظْهارُ لُغَةٍ واحِدَة */
+body.lang-ar .de,
+body.lang-ar .lesson-card .tx em,
+body.lang-ar .spd small,
+body.lang-ar .speedrow .lbl i,
+body.lang-ar .selfbtn small,
+body.lang-ar .gdoor small{display:none !important}
+body.lang-de .ar-txt{display:none !important}
+body.lang-de .lesson-card .tx small{display:none !important}
+body.lang-de .de{display:inline}
+body.lang-de p.de,body.lang-de div.de,body.lang-de .ht-row .de{display:block}
+body.lang-de .navbtn .de,body.lang-de .lesson-card .tx em,
+body.lang-de .spd small,body.lang-de .speedrow .lbl i,
+body.lang-de .selfbtn small{display:block}
+body.lang-de .q-label .de,body.lang-de .tap-hint .de{margin-top:0}
+
+/* شاشة اختيار الاسم */
+.whoWrap{position:fixed;inset:0;z-index:95;background:rgba(43,33,24,.55);
+  display:none;align-items:center;justify-content:center;padding:18px}
+.whoWrap.open{display:flex}
+.whoBox{background:var(--cream);border-radius:24px;padding:24px 20px;
+  width:100%;max-width:440px;max-height:88vh;overflow-y:auto;text-align:center;
+  box-shadow:0 14px 40px rgba(0,0,0,.3)}
+.whoBox img{height:58px;margin-bottom:10px}
+.whoBox h3{font-family:'Amiri',serif;font-size:1.65rem;margin-bottom:2px}
+.whoBox .sub{font-size:.88rem;color:var(--ink-soft);font-weight:700;margin-bottom:16px}
+.whoBox .sub .de{display:block;direction:ltr;font-size:.8rem;color:var(--teal-deep)}
+.userList{display:flex;flex-direction:column;gap:9px;margin-bottom:14px}
+.userItem{display:flex;align-items:center;gap:10px;background:#fff;border:3px solid var(--line);
+  border-radius:16px;padding:11px 15px;cursor:pointer;font-family:'Tajawal',sans-serif;
+  font-weight:800;font-size:1.05rem;transition:transform .15s,border-color .2s;text-align:right}
+.userItem:hover{transform:translateY(-2px);border-color:var(--gold)}
+.userItem .av{font-size:1.5rem}
+.userItem .st{margin-right:auto;font-size:.84rem;color:var(--gold);font-weight:800}
+.userItem .del{background:none;border:none;color:#c0b5a2;font-size:1rem;cursor:pointer;padding:2px 6px}
+.userItem .del:hover{color:var(--red)}
+.newRow{display:flex;gap:8px;margin-top:4px}
+.newRow input{flex:1;font-family:'Tajawal',sans-serif;font-size:1rem;font-weight:700;
+  border:3px solid var(--line);border-radius:14px;padding:10px 14px;outline:none;
+  text-align:center;background:#fff;color:var(--ink)}
+.newRow input:focus{border-color:var(--teal)}
 
 #confetti{position:fixed;inset:0;pointer-events:none;z-index:99;overflow:hidden}
 .conf{position:absolute;top:-8%;font-size:1.7rem;animation:fall linear forwards}
@@ -433,9 +643,14 @@ body{font-family:'Tajawal',sans-serif;background:var(--cream);color:var(--ink);
 <body>
 
 <nav class="topbar">
-  <button class="navbtn active" id="nav-home" onclick="go('home')">🏠 المجموعات</button>
-  <button class="navbtn" id="nav-menu" onclick="go('menu')">📚 التمارين</button>
-  <button class="navbtn" id="nav-worksheet" onclick="go('worksheet')">🖨️ وَرَقَةُ العَمَل</button>
+  <button class="navbtn active" id="nav-home" onclick="go('home')">🏠
+    <span class="ar-txt">المَجْموعات</span><span class="de">Gruppen</span></button>
+  <button class="navbtn" id="nav-menu" onclick="go('menu')">📚
+    <span class="ar-txt">التَّمارين</span><span class="de">Übungen</span></button>
+  <button class="navbtn" id="nav-worksheet" onclick="go('worksheet')">🖨️
+    <span class="ar-txt">وَرَقَةُ العَمَل</span><span class="de">Arbeitsblatt</span></button>
+  <button class="langbtn" id="lang-btn" onclick="toggleLang()">🇩🇪 Deutsch</button>
+  <button class="userbtn" id="user-btn" onclick="openWho()">👤</button>
 </nav>
 
 <!-- ===== الرئيسية ===== -->
@@ -450,7 +665,7 @@ body{font-family:'Tajawal',sans-serif;background:var(--cream);color:var(--ink);
 
   <div class="pbox" id="pbox"></div>
 
-  <p class="q-label" style="text-align:center;margin-bottom:12px">
+  <p class="q-label" id="groups-title" style="text-align:center;margin-bottom:12px">
     اِخْتَرْ مَجْموعَةً لِتَبْدَأ
     <span class="de">Wähle eine Gruppe – jede Gruppe hat 4 Übungen</span></p>
 
@@ -461,7 +676,7 @@ body{font-family:'Tajawal',sans-serif;background:var(--cream);color:var(--ink);
   <div class="stats" id="stats"></div>
 
   <div class="btn-row">
-    <button class="btn btn-ghost" onclick="go('worksheet')">🖨️ وَرَقَةُ العَمَل</button>
+    <button class="btn btn-ghost" onclick="go('worksheet')">🖨️ <span class="ar-txt">وَرَقَةُ العَمَل</span><span class="de">Arbeitsblatt</span></button>
   </div>
 </section>
 
@@ -470,7 +685,8 @@ body{font-family:'Tajawal',sans-serif;background:var(--cream);color:var(--ink);
   <h2 class="title" style="font-size:clamp(1.6rem,6vw,2.2rem)" id="menu-title">—</h2>
   <p class="subtitle" id="menu-letters">—</p>
   <div class="title-rule"></div>
-  <div class="gbadge"><button onclick="go('home')">↔ تَغْييرُ المَجْموعَة</button></div>
+  <div class="gbadge"><button onclick="go('home')">↔
+  <span class="ar-txt">تَغْييرُ المَجْموعَة</span><span class="de">Gruppe wechseln</span></button></div>
   <div id="tts-note"></div>
 
   <div class="lesson-list">
@@ -492,12 +708,12 @@ body{font-family:'Tajawal',sans-serif;background:var(--cream);color:var(--ink);
         <small>يَقْرَأُ بِصَوْتِهِ ثُمَّ يَسْمَعُ ويُقارِن</small>
         <em>Selbst vorlesen, dann mit der Aufnahme vergleichen</em></span>
     </button>
-    <button class="lesson-card" onclick="openGame()" id="game-card"
-      style="border-color:var(--gold);background:#FFFCF3">
-      <span class="ic">🎁</span>
-      <span class="tx"><b>لُعْبَةُ الغَيْمَة — مُكافَأَةُ المَجْموعَة</b>
-        <small>اِسْمَعِ الكَلِمَةَ وراقِبْ ما يَسْقُطُ مِنَ الغَيْمَة</small>
-        <em>Belohnungsspiel: Wolke, Schatzkiste und Mülleimer</em></span>
+                    <button class="lesson-card" onclick="go('games')" id="games-card"
+      style="border-color:var(--gold);background:#FFFCF2">
+      <span class="ic">🎮</span>
+      <span class="tx"><b>الأَلْعاب</b>
+        <small>أَرْبَعُ أَلْعابٍ عَلى كَلِماتِ هٰذِهِ المَجْموعَة</small>
+        <em>Vier Spiele mit den Wörtern dieser Gruppe</em></span>
     </button>
     <button class="lesson-card" onclick="startEx4()">
       <span class="ic">📖</span>
@@ -521,7 +737,7 @@ body{font-family:'Tajawal',sans-serif;background:var(--cream);color:var(--ink);
     <div class="options" id="opts1"></div>
     <div class="feedback" id="fb1"></div>
   </div>
-  <div class="btn-row"><button class="btn btn-ghost" onclick="go('menu')">📚 التَّمارين</button></div>
+  <div class="btn-row"><button class="btn btn-ghost" onclick="go('menu')">📚 <span class="ar-txt">التَّمارين</span><span class="de">Übungen</span></button></div>
 </section>
 
 <!-- ===== 2 ===== -->
@@ -536,7 +752,7 @@ body{font-family:'Tajawal',sans-serif;background:var(--cream);color:var(--ink);
     <div class="bank" id="bank2"></div>
     <div class="feedback" id="fb2"></div>
   </div>
-  <div class="btn-row"><button class="btn btn-ghost" onclick="go('menu')">📚 التَّمارين</button></div>
+  <div class="btn-row"><button class="btn btn-ghost" onclick="go('menu')">📚 <span class="ar-txt">التَّمارين</span><span class="de">Übungen</span></button></div>
 </section>
 
 <!-- ===== 3 ===== -->
@@ -559,7 +775,7 @@ body{font-family:'Tajawal',sans-serif;background:var(--cream);color:var(--ink);
     </div>
     <div class="feedback" id="fb3"></div>
   </div>
-  <div class="btn-row"><button class="btn btn-ghost" onclick="go('menu')">📚 التَّمارين</button></div>
+  <div class="btn-row"><button class="btn btn-ghost" onclick="go('menu')">📚 <span class="ar-txt">التَّمارين</span><span class="de">Übungen</span></button></div>
 </section>
 
 <!-- ===== 4 ===== -->
@@ -570,76 +786,303 @@ body{font-family:'Tajawal',sans-serif;background:var(--cream);color:var(--ink);
     اِضْغَطْ عَلى أَيِّ كَلِمَةٍ لِتَسْمَعَها
     <span class="de">Tippe ein Wort an, um es zu hören – so oft ihr wollt</span></p>
   <div class="cards" id="cards4"></div>
-  <div class="btn-row"><button class="btn btn-ghost" onclick="go('menu')">📚 التَّمارين</button></div>
+  <div class="btn-row"><button class="btn btn-ghost" onclick="go('menu')">📚 <span class="ar-txt">التَّمارين</span><span class="de">Übungen</span></button></div>
 </section>
 
-<!-- ===== اللعبة ===== -->
-<section class="screen" id="game">
-  <div id="game-locked"></div>
+<!-- ===== قسم الألعاب ===== -->
+<section class="screen" id="games">
+  <h2 class="title" id="games-title" style="font-size:clamp(1.6rem,6vw,2.2rem)">الأَلْعاب 🎮</h2>
+  <p class="subtitle" id="games-sub">—</p>
+  <div class="title-rule"></div>
+  <div class="gbadge"><button onclick="go('menu')">↩
+  <span class="ar-txt">رُجوعٌ إلى التَّمارين</span><span class="de">Zurück zu den Übungen</span></button></div>
 
-  <!-- بطاقة الشرح -->
-  <div id="game-intro" style="display:none">
-    <h2 class="title" style="font-size:clamp(1.5rem,5.5vw,2rem)">لُعْبَةُ الغَيْمَة</h2>
+  <div class="lesson-list">
+    <button class="lesson-card" onclick="openFish()" style="border-color:#3E9FCB;background:#F1F9FC">
+      <span class="ic">🎣</span>
+      <span class="tx"><b>صَيْدُ الحَرْف</b>
+        <small>اِسْمَعِ الحَرْفَ واصْطَدْ كُلَّ كَلِمَةٍ تَبْدَأُ بِه</small>
+        <em>Angelspiel: Wörter mit dem gehörten Buchstaben fangen</em></span>
+    </button>
+    <button class="lesson-card" onclick="openTrain()" style="border-color:#9b8a70;background:#FBF7EF">
+      <span class="ic">🚂</span>
+      <span class="tx"><b>قِطارُ الحُروف</b>
+        <small>رَتِّبِ الأَحْرُفَ في العَرَباتِ قَبْلَ مُغادَرَةِ القِطار</small>
+        <em>Zugspiel: Buchstaben einordnen, bevor der Zug fährt</em></span>
+    </button>
+    <button class="lesson-card" onclick="openTwin()" style="border-color:#B69BFF;background:#F7F3FE">
+      <span class="ic">🧺</span>
+      <span class="tx"><b>المُتَشابِهات</b>
+        <small>كَلِمَتانِ مُتَقارِبَتان — اِخْتَرِ الَّتي سَمِعْتَها</small>
+        <em>Ähnliche Wörter unterscheiden</em></span>
+    </button>
+    <button class="lesson-card" onclick="openRace()" style="border-color:var(--gold);background:#FFFCF2">
+      <span class="ic">🏁</span>
+      <span class="tx"><b>سِباقُ القِراءَة</b>
+        <small>اِقْرَأْ بِسُرْعَةٍ واضْغَطِ الكَلِمَةَ الَّتي سَمِعْتَها</small>
+        <em>Lese-Rennen: immer schneller, immer mehr Karten</em></span>
+    </button>
+  </div>
+</section>
+
+<!-- ===== لعبة صيد الحرف ===== -->
+<section class="screen" id="fish">
+  <div id="fish-intro">
+    <h2 class="title" style="font-size:clamp(1.5rem,5.5vw,2rem)">صَيْدُ الحَرْف 🎣</h2>
     <div class="title-rule"></div>
-
     <div class="howto">
-      <div class="ht-imgs">
-        <div class="ht-i"><img src="" id="hi-cloud" alt=""><span>الغَيْمَة<i>die Wolke</i></span></div>
-        <div class="ht-i"><img src="" id="hi-treasure" alt=""><span>صُنْدوقُ الكَنْز<i>Schatzkiste</i></span></div>
-        <div class="ht-i"><img src="" id="hi-trash" alt=""><span>سَلَّةُ المُهْمَلات<i>Mülleimer</i></span></div>
-      </div>
+      <div class="ht-row"><span class="n">1</span>
+        <div><b>اِسْتَمِعْ إلى الحَرْف</b>
+          <p>يُنْطَقُ حَرْفٌ واحِدٌ — <b>ولا يَظْهَرُ مَكْتوبًا</b>! عَلَيْكَ أَنْ تَعْرِفَهُ
+             بِأُذُنِك. اِضْغَطْ 🔊 الكَبيرَ لِتَسْمَعَهُ مَتى شِئْت.</p>
+          <p class="de">Der Buchstabe wird nur vorgelesen – nicht angezeigt. Dein Kind
+             muss ihn allein erkennen. Mit 🔊 jederzeit wiederholen.</p></div></div>
+      <div class="ht-row"><span class="n">2</span>
+        <div><b>اِصْطَدِ الكَلِمَةَ الَّتي تَبْدَأُ بِه</b>
+          <p>الكَلِماتُ تَسْبَحُ في البَحْر. اِضْغَطْ عَلى الكَلِمَةِ الَّتي
+             تَبْدَأُ بِذٰلِكَ الحَرْفِ فَتُصْطادُ بِالسِّنّارَة.</p>
+          <p class="de">Tippe das Wort an, das mit diesem Buchstaben beginnt.</p></div></div>
+      <div class="ht-row"><span class="n">3</span>
+        <div><b>بَعْدَ كُلِّ صَيْدَةٍ حَرْفٌ جَديد</b>
+          <p>كُلَّما اصْطَدْتَ كَلِمَةً صَحيحَةً تَسْمَعُ حَرْفًا جَديدًا.
+             الخَطَأُ يُكَلِّفُكَ قَلْبًا ❤️ ويُعادُ نُطْقُ الحَرْف.
+             وبَعْدَ ثَلاثَةِ أَخْطاءٍ عَلى الحَرْفِ نَفْسِهِ يَظْهَرُ مَكْتوبًا مُساعَدَةً لَك.</p>
+          <p class="de">Nach jedem Fang kommt ein neuer Buchstabe. Bei Fehlern wird er
+             erneut vorgelesen; nach drei Fehlern wird er angezeigt.</p></div></div>
+      <div class="ht-row"><span class="n">4</span>
+        <div><b>اِجْمَعْ أَكْثَرَ ما تَسْتَطيعُ قَبْلَ نِهايَةِ الوَقْت</b>
+          <p>الجَوْلَةُ مَحْدودَةٌ بِالوَقْتِ — والشَّريطُ في الأَعْلى يُنْذِرُكَ.</p>
+          <p class="de">Fange so viele Wörter wie möglich, bevor die Zeit abläuft.</p></div></div>
 
-      <ol class="ht-steps">
-        <li><b>تَسْمَعُ كَلِمَةً</b> بِصَوْتِ المُعَلِّم، وفي نَفْسِ الوَقْتِ تَنْزِلُ كَلِمَةٌ مِنَ الغَيْمَة.
-          <span class="de">Du hörst ein Wort – gleichzeitig fällt ein Wort aus der Wolke.</span></li>
-        <li><b>اِقْرَأِ الكَلِمَةَ النازِلَةَ</b> وقارِنْها بِما سَمِعْت.
-          <span class="de">Lies das fallende Wort und vergleiche es mit dem, was du gehört hast.</span></li>
-        <li>إِذا كانَتْ <b>هِيَ نَفْسُها</b> → اِضْغَطْ 🎁 <b>صُنْدوقَ الكَنْز</b>.
-          <span class="de">Gleiches Wort? → Tippe auf die Schatzkiste.</span></li>
-        <li>إِذا كانَتْ <b>كَلِمَةً أُخْرى</b> → اِضْغَطْ 🗑️ <b>سَلَّةَ المُهْمَلات</b>.
-          <span class="de">Anderes Wort? → Tippe auf den Mülleimer.</span></li>
-        <li>اِضْغَطْ قَبْلَ أَنْ تَصِلَ الكَلِمَةُ إلى الأَسْفَل، ولَكَ <b>ثَلاثَةُ قُلوب ❤️❤️❤️</b>.
-          <span class="de">Tippe rechtzeitig – du hast drei Leben.</span></li>
-        <li>زِرُّ 🔊 في أَعْلى الشاشَةِ يُعيدُ الكَلِمَةَ المَسْموعَةَ مَتى شِئْت.
-          <span class="de">Mit 🔊 oben kannst du das Wort nochmal hören.</span></li>
-      </ol>
-
-      <div class="ht-set">
-        <div class="setrow">
-          <span class="lbl">السُّرْعَة<i>Tempo</i></span>
-          <button class="spd on" id="spd-slow" onclick="setSpeed('slow')">🐢 بَطيءٌ جِدًّا<small>sehr langsam</small></button>
-          <button class="spd" id="spd-norm" onclick="setSpeed('norm')">🚶 عادي<small>normal</small></button>
-          <button class="spd" id="spd-fast" onclick="setSpeed('fast')">🐇 سَريع<small>schnell</small></button>
-        </div>
-        <div class="setrow" id="allrow" style="display:none">
-          <button class="spd wide" id="mode-all" onclick="toggleAll()">🌍 كَلِماتُ كُلِّ المَجْموعات<small>alle Gruppen mischen</small></button>
-        </div>
+      <div class="speedrow" style="margin-top:14px">
+        <span class="lbl">الوَقْت<i>Zeit</i></span>
+        <button class="spd on" id="ft-long" onclick="setFishTime('long')">🐢 60 ث<small>viel Zeit</small></button>
+        <button class="spd" id="ft-mid" onclick="setFishTime('mid')">🚶 45 ث<small>normal</small></button>
+        <button class="spd" id="ft-short" onclick="setFishTime('short')">🐇 30 ث<small>wenig Zeit</small></button>
       </div>
 
       <div class="btn-row">
-        <button class="btn btn-gold" style="font-size:1.15rem;padding:14px 40px"
-          onclick="playNow()">▶️ ابْدَأِ اللَّعِب</button>
-        <button class="btn btn-ghost" onclick="go('menu')">📚 التَّمارين</button>
+        <button class="btn btn-gold" onclick="fishStart()">▶️ <span class="ar-txt">ابْدَأِ اللَّعِب</span><span class="de">Spiel starten</span></button>
+        <button class="btn btn-ghost" onclick="go('menu')">📚 <span class="ar-txt">التَّمارين</span><span class="de">Übungen</span></button>
       </div>
     </div>
   </div>
 
-  <!-- ساحة اللعب -->
-  <div id="game-area" style="display:none">
-    <div class="gwrap" id="gwrap">
-      <div class="gtop">
-        <button class="gsound" id="g-again" onclick="gReplay()" aria-label="أعد السماع">🔊</button>
-        <span id="g-score">🎁 0</span>
-        <span class="hearts" id="g-hearts">❤️❤️❤️</span>
-        <button class="gexit" onclick="gameStop();openGame()" aria-label="خروج">✕</button>
+  <div id="fish-area" style="display:none">
+    <div class="sea" id="sea">
+      <div class="fTop">
+        <span id="f-score">🐟 0</span>
+        <span class="hearts" id="f-hearts">❤️❤️❤️</span>
       </div>
-      <div class="cloud"><img src="" id="img-cloud" alt="غيمة"></div>
-      <div class="gfall" id="g-word">—</div>
-      <div class="gears">
-        <button class="gbox" id="gb-t" onclick="gPut('t')">
-          <img src="" id="img-treasure" alt="">صُنْدوقُ الكَنْز<small>gleiches Wort</small></button>
-        <button class="gbox trash" id="gb-x" onclick="gPut('x')">
-          <img src="" id="img-trash" alt="">سَلَّةُ المُهْمَلات<small>anderes Wort</small></button>
+      <button class="fexit" id="f-exit" onclick="fishStop();openFish()" aria-label="خروج">✕</button>
+
+      <div class="wave"></div><div class="wave w2"></div>
+
+      <button class="fSpeak" id="f-spk" onclick="fSay()" aria-label="استمع إلى الحرف">🔊</button>
+      <span class="fSpeakLbl">اِضْغَطْ لِتَسْمَعَ الحَرْف</span>
+      <div class="fReveal" id="f-reveal">—</div>
+
+      <div class="ftime"><i id="f-time"></i></div>
+
+      <div class="rope" id="f-rope"></div>
+      <div class="hook" id="f-hook">🪝</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== لعبة قطار الحروف ===== -->
+<section class="screen" id="train">
+  <div id="train-intro">
+    <h2 class="title" style="font-size:clamp(1.5rem,5.5vw,2rem)">قِطارُ الحُروف 🚂</h2>
+    <div class="title-rule"></div>
+    <div class="howto">
+      <div class="ht-row"><span class="n">1</span>
+        <div><b>اِسْتَمِعْ إلى الكَلِمَة</b>
+          <p>اِضْغَطْ 🔊 لِتَسْمَعَ الكَلِمَةَ كامِلَةً، مِثْلُ <b>جَدَلَ</b>.</p>
+          <p class="de">Tippe auf 🔊 und höre das ganze Wort.</p></div></div>
+      <div class="ht-row"><span class="n">2</span>
+        <div><b>ضَعِ الأَحْرُفَ في العَرَبات</b>
+          <p>الأَحْرُفُ مُبَعْثَرَةٌ في الأَسْفَل. اِضْغَطْ عَلى الحَرْفِ فَيَقْفِزُ إلى
+             العَرَبَة — مِنَ اليَمينِ إلى اليَسار. واضْغَطْ عَلى العَرَبَةِ لِتُعيدَ حَرْفَها.</p>
+          <p class="de">Tippe die Buchstaben an – sie springen in die Waggons,
+             von rechts nach links. Waggon antippen = Buchstabe zurück.</p></div></div>
+      <div class="ht-row"><span class="n">3</span>
+        <div><b>أَسْرِعْ قَبْلَ وُصولِ القِطار</b>
+          <p>القِطارُ يَمْشي نَحْوَ المَحَطَّةِ ثُمَّ يُغادِرُ الشاشَة.
+             إِنِ اخْتَفَتْ آخِرُ عَرَبَةٍ قَبْلَ أَنْ تُكْمِلَ الكَلِمَةَ
+             خَسِرْتَ قَلْبًا ❤️ — ومَعَكَ ثَلاثَةٌ فَقَط.</p>
+          <p class="de">Der Zug fährt zum Bahnhof und weiter aus dem Bild.
+             Verschwindet der letzte Waggon, bevor das Wort fertig ist,
+             kostet das ein Herz.</p></div></div>
+      <div class="ht-row"><span class="n">4</span>
+        <div><b>كُلَّما نَجَحْتَ أَسْرَعَ القِطار</b>
+          <p>مَعَ كُلِّ كَلِمَةٍ صَحيحَةٍ يَزْدادُ القِطارُ سُرْعَةً قَليلًا، وتَكْبُرُ حُمولَتُهُ 📦.
+             وبَعْدَ خَمْسِ كَلِماتٍ قَدْ تَأْتي كَلِمَةٌ مِنْ أَرْبَعَةِ أَحْرُف!</p>
+          <p class="de">Der Zug wird schneller, seine Ladung wächst – und ab fünf Wörtern
+             kommen auch Wörter mit vier Buchstaben.</p></div></div>
+
+      <div class="speedrow" style="margin-top:14px">
+        <span class="lbl">سُرْعَةُ القِطار<i>Tempo</i></span>
+        <button class="spd on" id="tt-slow" onclick="setTrainSpeed('slow')">🐢 بَطيء<small>langsam</small></button>
+        <button class="spd" id="tt-norm" onclick="setTrainSpeed('norm')">🚶 عادي<small>normal</small></button>
+        <button class="spd" id="tt-fast" onclick="setTrainSpeed('fast')">🐇 سَريع<small>schnell</small></button>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-gold" onclick="trainStart()">▶️ <span class="ar-txt">ابْدَأِ اللَّعِب</span><span class="de">Spiel starten</span></button>
+        <button class="btn btn-ghost" onclick="go('menu')">📚 <span class="ar-txt">التَّمارين</span><span class="de">Übungen</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div id="train-area" style="display:none">
+    <div class="rail" id="rail">
+      <div class="skyband">
+        <video id="sky-vid" muted loop playsinline autoplay preload="none"></video>
+      </div>
+      <div class="tTop">
+        <span id="t-score">🚂 0</span>
+        <span class="hearts" id="t-hearts">❤️❤️❤️</span>
+      </div>
+      <button class="texit" id="t-exit" onclick="trainStop();openTrain()" aria-label="خروج">✕</button>
+
+      <button class="tSpeak" id="t-spk" onclick="tSay()" aria-label="استمع">🔊</button>
+      <p class="tLbl">اِضْغَطْ لِتَسْمَعَ الكَلِمَة</p>
+
+      <div class="scene" id="t-scene">
+        <div class="station"><img src="" id="img-station" alt="المحطة"></div>
+        <div class="track"></div>
+        <div class="train" id="t-train"></div>
+      </div>
+
+      <div class="tBank" id="t-bank"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== لعبة المتشابهات ===== -->
+<section class="screen" id="twin">
+  <div id="twin-intro">
+    <h2 class="title" style="font-size:clamp(1.5rem,5.5vw,2rem)">المُتَشابِهات 🧺</h2>
+    <div class="title-rule"></div>
+    <div class="howto">
+      <div class="ht-row"><span class="n">1</span>
+        <div><b>كَلِمَتانِ مُتَشابِهَتان</b>
+          <p>تَظْهَرُ كَلِمَتانِ لا تَخْتَلِفانِ إِلّا بِحَرْفٍ واحِدٍ،
+             مِثْلُ <b>طَرَقَ</b> و<b>طَرَفَ</b>.</p>
+          <p class="de">Zwei Wörter, die sich nur in einem Buchstaben unterscheiden.</p></div></div>
+      <div class="ht-row"><span class="n">2</span>
+        <div><b>اِسْتَمِعْ جَيِّدًا</b>
+          <p>يُنْطَقُ إِحْداهُما فَقَط. اِضْغَطْ 🔊 لِتَسْمَعَها مَرَّةً أُخْرى
+             قَبْلَ أَنْ تَخْتار.</p>
+          <p class="de">Nur eines der beiden wird vorgelesen. Mit 🔊 nochmal hören.</p></div></div>
+      <div class="ht-row"><span class="n">3</span>
+        <div><b>اِخْتَرِ الَّتي سَمِعْتَها</b>
+          <p>اِضْغَطْ عَلى الكَلِمَةِ الصَّحيحَة. وفي كُلِّ الأَحْوالِ —
+             أَصَبْتَ أَمْ أَخْطَأْتَ — يَظْهَرُ الحَرْفُ الفارِقُ بِاللَّوْنِ الأَحْمَر.
+             وعِنْدَ الخَطَأِ تَسْمَعُ الحَرْفَيْنِ مُجَرَّدَيْنِ لِتُدْرِكَ الفَرْق.</p>
+          <p class="de">Tippe das richtige Wort an. Der abweichende Buchstabe wird
+             immer rot markiert – bei Fehlern hörst du beide Buchstaben einzeln.</p></div></div>
+      <div class="ht-row"><span class="n">4</span>
+        <div><b>أَسْرِعْ قَبْلَ نِهايَةِ الوَقْت</b>
+          <p>لِكُلِّ سُؤالٍ وَقْتٌ مَحْدودٌ يَقْصُرُ قَليلًا كُلَّما نَجَحْت.
+             وبَعْدَ خَمْسِ إِجاباتٍ صَحيحَةٍ تَصيرُ البِطاقاتُ <b>ثَلاثًا</b>!
+             وكُلُّ خَمْسِ إِجاباتٍ مُتَتالِيَةٍ 🔥 تُعْطيكَ نَجْمَةً إِضافِيَّة.</p>
+          <p class="de">Das Zeitlimit wird kürzer. Ab fünf richtigen Antworten gibt es
+             drei Karten, und jede Serie von fünf 🔥 bringt einen Extra-Stern.</p></div></div>
+
+      <div class="speedrow" style="margin-top:14px">
+        <span class="lbl">الوَقْتُ لِكُلِّ سُؤال<i>Zeit pro Frage</i></span>
+        <button class="spd on" id="wt-slow" onclick="setTwinTime('slow')">🐢 10 ث<small>viel Zeit</small></button>
+        <button class="spd" id="wt-norm" onclick="setTwinTime('norm')">🚶 7 ث<small>normal</small></button>
+        <button class="spd" id="wt-fast" onclick="setTwinTime('fast')">🐇 5 ث<small>wenig Zeit</small></button>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-gold" onclick="twinStart()">▶️ <span class="ar-txt">ابْدَأِ اللَّعِب</span><span class="de">Spiel starten</span></button>
+        <button class="btn btn-ghost" onclick="go('menu')">📚 <span class="ar-txt">التَّمارين</span><span class="de">Übungen</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div id="twin-area" style="display:none">
+    <div class="twin" id="twinbox">
+      <div class="wTop">
+        <span id="w-score">🧺 0</span>
+        <span class="wStreak" id="w-streak">🔥 0</span>
+        <span class="hearts" id="w-hearts">❤️❤️❤️</span>
+      </div>
+      <button class="wexit" id="w-exit" onclick="twinStop();openTwin()" aria-label="خروج">✕</button>
+
+      <button class="wSpeak" id="w-spk" onclick="wSay()" aria-label="استمع">🔊</button>
+      <p class="wLbl">اِضْغَطْ لِتَسْمَعَ الكَلِمَة</p>
+      <div class="wtime"><i id="w-time"></i></div>
+
+      <div class="wPair" id="w-pair"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== لعبة سباق القراءة ===== -->
+<section class="screen" id="race">
+  <div id="race-intro">
+    <h2 class="title" style="font-size:clamp(1.5rem,5.5vw,2rem)">سِباقُ القِراءَة 🏁</h2>
+    <div class="title-rule"></div>
+    <div class="howto">
+      <div class="ht-row"><span class="n">1</span>
+        <div><b>اِسْتَمِعْ ثُمَّ اقْرَأْ بِسُرْعَة</b>
+          <p>تُنْطَقُ كَلِمَةٌ واحِدَة، وأَمامَكَ كُروتٌ عَلَيْها كَلِماتٌ مَكْتوبَة.
+             اِقْرَأْها بِعَيْنِكَ واضْغَطِ الصَّحيحَة.</p>
+          <p class="de">Ein Wort wird vorgelesen – finde es auf den Karten und tippe es an.</p></div></div>
+      <div class="ht-row"><span class="n">2</span>
+        <div><b>العَدّادُ في الأَسْفَل</b>
+          <p>الإِبْرَةُ تَتَحَرَّكُ مِنَ الأَخْضَرِ إلى الأَحْمَر. إِنْ وَصَلَتِ
+             النِّهايَةَ خَسِرْتَ قَلْبًا ❤️ — ومَعَكَ ثَلاثَةٌ فَقَط.</p>
+          <p class="de">Der Zeiger wandert von Grün nach Rot. Läuft die Zeit ab,
+             kostet das ein Herz.</p></div></div>
+      <div class="ht-row"><span class="n">3</span>
+        <div><b>كُلُّ جَوْلَةٍ أَسْرَع</b>
+          <p>تَنْقُصُ ثانِيَةٌ مِنَ الوَقْتِ في كُلِّ جَوْلَة، وبَعْدَ كُلِّ جَوْلَتَيْنِ
+             تَزيدُ الكُروت: <b>4 ← 6 ← 9</b>.</p>
+          <p class="de">Jede Runde wird eine Sekunde schneller, und alle zwei Runden
+             kommen mehr Karten dazu: 4 → 6 → 9.</p></div></div>
+      <div class="ht-row"><span class="n">4</span>
+        <div><b>مُكافَأَةُ السُّرْعَة ⚡</b>
+          <p>إِذا أَجَبْتَ في أَقَلَّ مِنْ ثانِيَتَيْنِ نِلْتَ نَجْمَةً إِضافِيَّة!</p>
+          <p class="de">Antwort in unter zwei Sekunden = ein Extra-Stern.</p></div></div>
+
+      <div class="btn-row">
+        <button class="btn btn-gold" onclick="raceStart()">▶️ <span class="ar-txt">ابْدَأِ السِّباق</span><span class="de">Rennen starten</span></button>
+        <button class="btn btn-ghost" onclick="go('menu')">📚 <span class="ar-txt">التَّمارين</span><span class="de">Übungen</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div id="race-area" style="display:none">
+    <div class="race" id="racebox">
+      <div class="rTop">
+        <span id="r-score">🏁 0</span>
+        <span class="rRound" id="r-round">الجَوْلَة 1</span>
+        <span class="hearts" id="r-hearts">❤️❤️❤️</span>
+      </div>
+      <button class="rexit" id="r-exit" onclick="raceStop();openRace()" aria-label="خروج">✕</button>
+
+      <button class="rSpeak" id="r-spk" onclick="rSay()" aria-label="استمع">🔊</button>
+      <div class="rGrid" id="r-grid"></div>
+
+      <div class="gauge">
+        <svg viewBox="0 0 124 76" aria-hidden="true">
+          <path d="M10 66 A52 52 0 0 1 24 29" stroke="#2E8B3A" stroke-width="11" fill="none" stroke-linecap="round"/>
+          <path d="M26 27 A52 52 0 0 1 48 13" stroke="#7DC242" stroke-width="11" fill="none" stroke-linecap="round"/>
+          <path d="M50 12 A52 52 0 0 1 74 12" stroke="#F5C518" stroke-width="11" fill="none" stroke-linecap="round"/>
+          <path d="M76 13 A52 52 0 0 1 98 27" stroke="#F58A1F" stroke-width="11" fill="none" stroke-linecap="round"/>
+          <path d="M100 29 A52 52 0 0 1 114 66" stroke="#E03A27" stroke-width="11" fill="none" stroke-linecap="round"/>
+          <g class="needle" id="r-needle">
+            <line x1="62" y1="62" x2="26" y2="40" stroke="#2B2118" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="62" cy="62" r="6" fill="#2B2118"/>
+          </g>
+        </svg>
+        <p class="gtxt" id="r-gtxt">السُّرْعَة</p>
       </div>
     </div>
   </div>
@@ -647,7 +1090,7 @@ body{font-family:'Tajawal',sans-serif;background:var(--cream);color:var(--ink);
 
 <!-- ===== ورقة العمل ===== -->
 <section class="screen" id="worksheet">
-  <h2 class="title" style="font-size:clamp(1.6rem,6vw,2.2rem)">وَرَقَةُ العَمَل</h2>
+  <h2 class="title" id="ws-title" style="font-size:clamp(1.6rem,6vw,2.2rem)">وَرَقَةُ العَمَل</h2>
   <div class="title-rule"></div>
   <div class="ws-intro">
     <p><b>لِلْأَهْل:</b> اِطْبَعِ الأَوْراقَ، ثُمَّ اقْرَأْ لِطِفْلِكَ كُلَّ كَلِمَةٍ مِنَ
@@ -658,8 +1101,8 @@ body{font-family:'Tajawal',sans-serif;background:var(--cream);color:var(--ink);
   </div>
   <div id="ws-pages"></div>
   <div class="btn-row noprint">
-    <button class="btn btn-gold" onclick="window.print()">🖨️ اطْبَعِ الأَوْراق</button>
-    <button class="btn btn-ghost" onclick="go('home')">🏠 الرَّئيسِيَّة</button>
+    <button class="btn btn-gold" onclick="window.print()">🖨️ <span class="ar-txt">اطْبَعِ الأَوْراق</span><span class="de">Blätter drucken</span></button>
+    <button class="btn btn-ghost" onclick="go('home')">🏠 <span class="ar-txt">الرَّئيسِيَّة</span><span class="de">Start</span></button>
   </div>
 </section>
 
@@ -676,6 +1119,24 @@ body{font-family:'Tajawal',sans-serif;background:var(--cream);color:var(--ink);
   </div>
 </section>
 
+<div class="whoWrap" id="whoWrap">
+  <div class="whoBox">
+    <img src="https://res.cloudinary.com/difo1j3ol/image/upload/v1778521078/%D8%A7%D9%84%D9%84%D9%88%D8%BA%D9%88_anabeh.png" alt="معهد الأمين">
+    <h3><span class="ar-txt">مَنْ يَتَعَلَّمُ الآن؟</span><span class="de">Wer lernt gerade?</span></h3>
+    <p class="sub"><span class="ar-txt">اِخْتَرِ اسْمَكَ لِتُحْفَظَ نُجومُكَ وتَقَدُّمُك</span>
+      <span class="de">Wähle deinen Namen – Sterne und Fortschritt werden gespeichert</span></p>
+    <div class="userList" id="userList"></div>
+    <div style="display:flex;justify-content:center;margin-bottom:12px">
+      <button class="langbtn" id="lang-btn-who" onclick="toggleLang()">🇩🇪 Deutsch</button>
+    </div>
+    <div class="newRow">
+      <input id="newUser" maxlength="14" placeholder="اِسْمٌ جَديد…"
+        data-ph-ar="اِسْمٌ جَديد…" data-ph-de="Neuer Name…" autocomplete="off">
+      <button class="btn btn-gold" style="padding:10px 18px" onclick="addUser()">➕</button>
+    </div>
+  </div>
+</div>
+
 <div id="confetti"></div>
 
 <script>
@@ -686,10 +1147,43 @@ body{font-family:'Tajawal',sans-serif;background:var(--cream);color:var(--ink);
 const AUDIO = {
   g1w1:'https://res.cloudinary.com/difo1j3ol/video/upload/v1789818462/%D8%A8%D8%B1%D9%82_nzn9uw.mp4', g1w2:'https://res.cloudinary.com/difo1j3ol/video/upload/v1789818462/%D8%A8%D8%AF%D8%B1_f75lch.mp4', g1w3:'https://res.cloudinary.com/difo1j3ol/video/upload/v1789818461/%D8%AA%D8%B1%D9%83_shjtkz.mp4', g1w4:'https://res.cloudinary.com/difo1j3ol/video/upload/v1789818460/%D8%AA%D8%B1%D8%AD_fbxc3q.mp4', g1w5:'https://res.cloudinary.com/difo1j3ol/video/upload/v1789818461/%D8%AB%D8%B1%D9%85_ywmffr.mp4', g1w6:'https://res.cloudinary.com/difo1j3ol/video/upload/v1789818460/%D8%AB%D8%B1%D8%AF_baixkc.mp4', g1w7:'https://res.cloudinary.com/difo1j3ol/video/upload/v1789818459/%D8%AC%D8%AF%D9%84_cwem3s.mp4', g1w8:'https://res.cloudinary.com/difo1j3ol/video/upload/v1789818458/%D8%AC%D8%B1%D9%81_z47gj9.mp4',
   g2w1:'https://res.cloudinary.com/difo1j3ol/video/upload/v1789818459/%D8%AD%D8%B1%D9%82_xrhvsr.mp4', g2w2:'https://res.cloudinary.com/difo1j3ol/video/upload/v1789818458/%D8%AD%D8%B0%D8%B1_ucgzyk.mp4', g2w3:'https://res.cloudinary.com/difo1j3ol/video/upload/v1789818458/%D8%AE%D8%AF%D9%85_ghovet.mp4', g2w4:'https://res.cloudinary.com/difo1j3ol/video/upload/v1789818457/%D8%AE%D8%B0%D9%84_rf8vgu.mp4', g2w5:'https://res.cloudinary.com/difo1j3ol/video/upload/v1789818457/%D8%B3%D8%B1%D9%82_zcyznu.mp4', g2w6:'https://res.cloudinary.com/difo1j3ol/video/upload/v1789818456/%D8%B3%D8%AF%D9%84_vtohgc.mp4', g2w7:'https://res.cloudinary.com/difo1j3ol/video/upload/v1789818457/%D8%B4%D8%B1%D8%AD_pxsgof.mp4', g2w8:'https://res.cloudinary.com/difo1j3ol/video/upload/v1789818456/%D8%B4%D8%B0%D8%B1_kyy2sz.mp4',
-  g3w1:'', g3w2:'', g3w3:'', g3w4:'', g3w5:'', g3w6:'', g3w7:'', g3w8:'',
-  g4w1:'', g4w2:'', g4w3:'', g4w4:'', g4w5:'', g4w6:'', g4w7:'', g4w8:'',
-  g5w1:'', g5w2:'', g5w3:'', g5w4:'', g5w5:'', g5w6:'', g5w7:'', g5w8:'',
-  g6w1:'', g6w2:'', g6w3:'', g6w4:''
+  g3w1:'https://res.cloudinary.com/difo1j3ol/video/upload/v1791146787/%D8%B5%D8%B1%D8%AE_sxydsz.mp4', g3w2:'https://res.cloudinary.com/difo1j3ol/video/upload/v1791146786/%D8%B5%D8%AF%D8%B9_jqrq9x.mp4', g3w3:'https://res.cloudinary.com/difo1j3ol/video/upload/v1791146786/%D8%B6%D8%B1%D8%B9_rqfdmv.mp4', g3w4:'https://res.cloudinary.com/difo1j3ol/video/upload/v1791146786/%D8%B6%D8%B1%D8%A8_iyxx5l.mp4', g3w5:'https://res.cloudinary.com/difo1j3ol/video/upload/v1791146787/%D8%B7%D8%B1%D9%82_sdvalv.mp4', g3w6:'https://res.cloudinary.com/difo1j3ol/video/upload/v1791146788/%D8%B7%D8%B1%D9%81_nxfoj3.mp4', g3w7:'https://res.cloudinary.com/difo1j3ol/video/upload/v1791146786/%D8%B8%D8%B1%D9%81_u1rrsc.mp4', g3w8:'https://res.cloudinary.com/difo1j3ol/video/upload/v1791146785/%D8%B8%D8%A3%D8%B1_dsrz3n.mp4',
+  g4w1:'https://res.cloudinary.com/difo1j3ol/video/upload/v1791146785/%D8%B9%D8%AF%D9%84_eurx9f.mp4', g4w2:'https://res.cloudinary.com/difo1j3ol/video/upload/v1791146785/%D8%B9%D8%B1%D8%AC_wbfsrd.mp4', g4w3:'https://res.cloudinary.com/difo1j3ol/video/upload/v1791146785/%D8%BA%D8%B2%D9%84_esnycw.mp4', g4w4:'https://res.cloudinary.com/difo1j3ol/video/upload/v1791146783/%D8%BA%D8%AF%D9%82_zpblp9.mp4', g4w5:'https://res.cloudinary.com/difo1j3ol/video/upload/v1791146785/%D9%81%D8%B1%D9%82_h48z5e.mp4', g4w6:'https://res.cloudinary.com/difo1j3ol/video/upload/v1791146783/%D9%81%D8%B1%D8%B7_ksglks.mp4', g4w7:'https://res.cloudinary.com/difo1j3ol/video/upload/v1791146783/%D9%82%D8%AF%D8%B1_qes2ep.mp4', g4w8:'https://res.cloudinary.com/difo1j3ol/video/upload/v1791146783/%D9%82%D8%B1%D9%86_iucj6b.mp4',
+  g5w1:'https://res.cloudinary.com/difo1j3ol/video/upload/v1791147201/%D9%83%D8%B1%D8%B3_hlnfy9.mp4', g5w2:'https://res.cloudinary.com/difo1j3ol/video/upload/v1791147201/%D9%83%D8%B0%D8%A8_nw9ipf.mp4', g5w3:'https://res.cloudinary.com/difo1j3ol/video/upload/v1791146783/%D9%84%D8%AF%D8%BA%D9%8E_alf0l3.mp4', g5w4:'https://res.cloudinary.com/difo1j3ol/video/upload/v1791146783/%D9%84%D8%B2%D8%A8_glu7zu.mp4', g5w5:'https://res.cloudinary.com/difo1j3ol/video/upload/v1791146782/%D9%85%D8%B1%D9%82_mboz5j.mp4', g5w6:'https://res.cloudinary.com/difo1j3ol/video/upload/v1791146782/%D9%85%D9%86%D8%AD_z0ln9e.mp4', g5w7:'https://res.cloudinary.com/difo1j3ol/video/upload/v1791146782/%D9%86%D8%B2%D8%B9_pq9w2q.mp4', g5w8:'https://res.cloudinary.com/difo1j3ol/video/upload/v1791146782/%D9%86%D8%B0%D8%B1_encc0a.mp4',
+  g6w1:'https://res.cloudinary.com/difo1j3ol/video/upload/v1791146782/%D9%87%D8%AF%D9%85_qyyv1i.mp4', g6w2:'https://res.cloudinary.com/difo1j3ol/video/upload/v1791146782/%D9%87%D8%B1%D8%B9_pqut88.mp4', g6w3:'https://res.cloudinary.com/difo1j3ol/video/upload/v1791146782/%D9%8A%D8%AF%D8%B9_zsayzc.mp4', g6w4:'https://res.cloudinary.com/difo1j3ol/video/upload/v1791146782/%D9%8A%D8%B0%D8%B1_wznzsv.mp4'
+};
+
+/* ==================== تَسْجيلاتُ الحُروفِ المُفْرَدَة ==================== */
+const LC='https://res.cloudinary.com/difo1j3ol/video/upload/';
+const LETTER_AUDIO={
+  'ب':LC+'v1787982747/%D8%A8_tuncgk.mp4',
+  'ت':LC+'v1787982746/%D8%AA_hephsq.mp4',
+  'ث':LC+'v1787982746/%D8%AB_l9ofdd.mp4',
+  'ج':LC+'v1787982744/%D8%AC_mtpq9l.mp4',
+  'ح':LC+'v1787982744/%D8%AD_ww6roh.mp4',
+  'خ':LC+'v1787982743/%D8%AE_pica5s.mp4',
+  'د':LC+'v1787982743/%D8%AF_hdqldf.mp4',
+  'ذ':LC+'v1787983106/%D8%B0_wb1572.mp4',
+  'ر':LC+'v1788375785/%D8%B1%D9%8E_hq7kme.mp4',
+  'ز':LC+'v1788375784/%D8%B2%D9%8E_cpxybi.mp4',
+  'س':LC+'v1788375781/%D8%B3%D9%8E_jn1lhg.mp4',
+  'ش':LC+'v1788375780/%D8%B4%D9%8E_izp8v5.mp4',
+  'ص':LC+'v1788375780/%D8%B5%D9%8E_wewzhg.mp4',
+  'ض':LC+'v1788375779/%D8%B6%D9%8E_uq1z1k.mp4',
+  'ط':LC+'v1788375779/%D8%B7%D9%8E_mydmec.mp4',
+  'ظ':LC+'v1788375779/%D8%B8%D9%8E_icxbwc.mp4',
+  'ع':LC+'v1788375778/%D8%B9%D9%8E_hja0nh.mp4',
+  'غ':LC+'v1788375778/%D8%BA%D9%8E_jlcu6u.mp4',
+  'ف':LC+'v1788376620/%D9%81%D9%8E_iw0jkr.mp4',
+  'ق':LC+'v1788375774/%D9%82%D9%8E_qvu7lm.mp4',
+  'ك':LC+'v1788375774/%D9%83%D9%8E_at7iqs.mp4',
+  'ل':LC+'v1788375773/%D9%84%D9%8E_pxajd0.mp4',
+  'م':LC+'v1788375773/%D9%85%D9%8E_vvxyiu.mp4',
+  'ن':LC+'v1788375773/%D9%86%D9%8E_jgcmmc.mp4',
+  'ه':LC+'v1788375772/%D9%87%D9%8E_mjkjtp.mp4',
+  'و':LC+'v1788375772/%D9%88%D9%8E_nw2bct.mp4',
+  'ي':LC+'v1788375772/%D9%8A%D9%8E_dlxld9.mp4',
+  'أ':LC+'v1787982747/%D8%A3%D9%8E_ass4ip.mp4'
 };
 
 /* ==================== المجموعات ==================== */
@@ -828,10 +1322,9 @@ const BADGES=[
   {p:50,e:'🏅',ar:'مُتَمَيِّز',de:'Profi'},
   {p:100,e:'🏆',ar:'قارِئٌ ماهِر',de:'Lese-Meister'}
 ];
-const PKEY='alamin-stars';
-function loadPts(){ try{ return parseInt(localStorage.getItem(PKEY))||0; }catch(e){ return 0; } }
-function savePts(v){ try{ localStorage.setItem(PKEY,v); }catch(e){} }
-let PTS=loadPts();
+function loadPts(){ try{ return parseInt(localStorage.getItem(starsKey()))||0; }catch(e){ return 0; } }
+function savePts(v){ try{ localStorage.setItem(starsKey(),v); }catch(e){} }
+let PTS=0;
 const badgeOf=p=>{ let b=null; BADGES.forEach(x=>{ if(p>=x.p) b=x; }); return b; };
 const nextOf=p=>BADGES.find(x=>p<x.p)||null;
 function addPts(n){
@@ -859,12 +1352,106 @@ function resetPts(){
   PTS=0; savePts(0); drawPoints();
 }
 
+/* ==================== اللُّغَةُ والمُسْتَخْدِمون ==================== */
+const LKEY='alamin-kf-lang', UKEY='alamin-kf-users', CKEY='alamin-kf-current';
+let LANG='ar', USER='';
+
+function lsGet(k,d){ try{ const v=localStorage.getItem(k); return v===null?d:v; }catch(e){ return d; } }
+function lsSet(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+
+function users(){ try{ return JSON.parse(lsGet(UKEY,'[]'))||[]; }catch(e){ return []; } }
+function saveUsers(a){ lsSet(UKEY, JSON.stringify(a)); }
+
+/* مَفاتيحُ التَّخْزينِ خاصَّةٌ بِكُلِّ اسْم */
+const starsKey = ()=> 'alamin-stars::'+(USER||'_');
+const progKey  = ()=> 'alamin-kf-progress::'+(USER||'_');
+
+/* ---- اللُّغَة ---- */
+function applyLangTags(){
+  /* عَناصِرُ عَرَبِيَّةٌ كامِلَة */
+  document.querySelectorAll('.ht-row p:not(.de), .ws-intro p:not(.de)')
+    .forEach(e=>e.classList.add('ar-txt'));
+  /* عَناصِرُ مُخْتَلِطَة: نُغَلِّفُ النَّصَّ العَرَبيَّ المُباشِر */
+  const mixed='.q-label,.tap-hint,.sh-task,.speedrow .lbl,.spd,.subtitle,.wLbl,.tLbl,.fSpeakLbl,.ghint,.whoBox .sub';
+  document.querySelectorAll(mixed).forEach(el=>{
+    [...el.childNodes].forEach(n=>{
+      if(n.nodeType===3 && n.textContent.trim()){
+        const sp=document.createElement('span');
+        sp.className='ar-txt'; sp.textContent=n.textContent;
+        el.replaceChild(sp,n);
+      }
+    });
+  });
+}
+function setLang(l){
+  LANG=l; lsSet(LKEY,l);
+  document.body.classList.toggle('lang-ar', l==='ar');
+  document.body.classList.toggle('lang-de', l==='de');
+  const b=document.getElementById('lang-btn');
+  if(b) b.textContent = l==='ar' ? '🇩🇪 Deutsch' : '🇸🇦 العَرَبِيَّة';
+  const mt=document.getElementById('menu-title');
+  if(mt && typeof G==='function' && mt.textContent!=='—')
+    mt.textContent = T('المَجْموعَةُ '+G().n, 'Gruppe '+G().n);
+  const ttl={
+    'groups-title':['المَجْموعات','Gruppen'],
+    'ws-title':['وَرَقَةُ العَمَل','Arbeitsblatt'],
+    'games-title':['الأَلْعاب 🎮','Spiele 🎮']
+  };
+  Object.entries(ttl).forEach(([id,[a,d]])=>{
+    const e=document.getElementById(id); if(e) e.textContent = l==='de'?d:a;
+  });
+}
+function toggleLang(){ setLang(LANG==='ar'?'de':'ar'); }
+
+/* ---- المُسْتَخْدِمون ---- */
+const AVATARS=['🦊','🐼','🦁','🐨','🐯','🐸','🦉','🐬','🦋','🐝','🦄','🐧'];
+const avatarOf = n => AVATARS[[...n].reduce((a,c)=>a+c.charCodeAt(0),0)%AVATARS.length];
+
+function openWho(){ drawUsers(); document.getElementById('whoWrap').classList.add('open'); }
+function closeWho(){ document.getElementById('whoWrap').classList.remove('open'); }
+function drawUsers(){
+  const box=document.getElementById('userList');
+  const list=users();
+  box.innerHTML = list.length ? list.map(n=>{
+    const st=parseInt(lsGet('alamin-stars::'+n,'0'))||0;
+    return `<div class="userItem" onclick="pickUser('${n.replace(/'/g,"\\'")}')">
+      <span class="av">${avatarOf(n)}</span><span>${n}</span>
+      <span class="st">⭐ ${st}</span>
+      <button class="del" onclick="event.stopPropagation();delUser('${n.replace(/'/g,"\\'")}')" title="حذف">✕</button>
+    </div>`;}).join('') : '';
+}
+function pickUser(n){
+  USER=n; lsSet(CKEY,n);
+  PTS=parseInt(lsGet(starsKey(),'0'))||0;
+  try{ PROG=JSON.parse(lsGet(progKey(),'{}'))||{done:{},miss:{}}; }catch(e){ PROG={done:{},miss:{}}; }
+  if(!PROG.done) PROG.done={}; if(!PROG.miss) PROG.miss={};
+  const ub=document.getElementById('user-btn');
+  if(ub) ub.textContent=avatarOf(n)+' '+n;
+  closeWho(); drawPoints(); drawStats(); buildGroups(); go('home');
+}
+function addUser(){
+  const inp=document.getElementById('newUser');
+  const n=(inp.value||'').trim();
+  if(!n) return;
+  const list=users();
+  if(!list.includes(n)){ list.push(n); saveUsers(list); }
+  inp.value='';
+  pickUser(n);
+}
+function delUser(n){
+  if(!confirm('حَذْفُ «'+n+'» مَعَ نُجومِهِ وتَقَدُّمِه؟')) return;
+  saveUsers(users().filter(x=>x!==n));
+  try{ localStorage.removeItem('alamin-stars::'+n);
+       localStorage.removeItem('alamin-kf-progress::'+n); }catch(e){}
+  if(USER===n){ USER=''; lsSet(CKEY,''); }
+  drawUsers();
+}
+
 /* ==================== تَتَبُّعُ التَّقَدُّم ==================== */
-const RKEY='alamin-kf-progress';
-function loadProg(){ try{ return JSON.parse(localStorage.getItem(RKEY))||{done:{},miss:{}}; }
+function loadProg(){ try{ return JSON.parse(localStorage.getItem(progKey()))||{done:{},miss:{}}; }
   catch(e){ return {done:{},miss:{}}; } }
-function saveProg(){ try{ localStorage.setItem(RKEY, JSON.stringify(PROG)); }catch(e){} }
-let PROG=loadProg();
+function saveProg(){ try{ localStorage.setItem(progKey(), JSON.stringify(PROG)); }catch(e){} }
+let PROG={done:{},miss:{}};
 if(!PROG.done) PROG.done={}; if(!PROG.miss) PROG.miss={};
 
 function markDone(gn, ex){
@@ -885,7 +1472,7 @@ function topMisses(n=3){
   return Object.entries(PROG.miss).sort((a,b)=>b[1]-a[1]).slice(0,n).map(x=>x[0]);
 }
 function resetProg(){
-  if(!confirm('هَلْ تُريدُ مَسْحَ سِجِلِّ التَّقَدُّمِ والنُّجوم؟')) return;
+  if(!confirm('هَلْ تُريدُ مَسْحَ سِجِلِّ التَّقَدُّمِ والنُّجومِ لِـ «'+(USER||'هٰذا المُسْتَخْدِم')+'»؟')) return;
   PROG={done:{},miss:{}}; saveProg(); PTS=0; savePts(0);
   drawPoints(); buildGroups(); drawStats();
 }
@@ -910,8 +1497,25 @@ function go(id){
   document.getElementById(id).classList.add('on');
   document.querySelectorAll('.navbtn').forEach(b=>b.classList.remove('active'));
   const m={home:'nav-home',menu:'nav-menu',worksheet:'nav-worksheet'};
+  if(id==='menu' && typeof G==='function'){
+    const mt=document.getElementById('menu-title');
+    if(mt) mt.textContent = T('المَجْموعَةُ '+G().n, 'Gruppe '+G().n);
+  }
+  if(id==='games'){
+    const g=document.getElementById('games-sub');
+    if(g) g.innerHTML=`<span style="font-family:Amiri,serif;font-size:1.5rem;letter-spacing:6px">${G().letters}</span>`;
+  }
   if(m[id]) document.getElementById(m[id]).classList.add('active');
-  if(id!=='game' && typeof gameStop==='function') gameStop();
+  if(id!=='fish' && typeof fishStop==='function') fishStop();
+  if(id!=='twin' && typeof twinStop==='function') twinStop();
+  if(id!=='race' && typeof raceStop==='function') raceStop();
+  if(id!=='train' && typeof trainStop==='function'){
+    trainStop();
+    const sv=document.getElementById('sky-vid'); if(sv) try{ sv.pause(); }catch(e){}
+  }else if(id==='train'){
+    const sv=document.getElementById('sky-vid');
+    if(sv && sv.src) try{ sv.play().catch(()=>{}); }catch(e){}
+  }
   window.scrollTo({top:0,behavior:'smooth'});
 }
 function buildGroups(){
@@ -925,14 +1529,18 @@ function buildGroups(){
       <div class="cnt">${m?'أُتْقِنَتْ ✓':`${d} / 3 تَمارين`}</div>
     </button>`;}).join('');
 }
+/* هَلْ لِلْمَجْموعَةِ تَسْجيلاتٌ بِصَوْتِ المُعَلِّم؟ */
+function groupHasRec(){ return G().words.some((w,i)=>AUDIO[key(G(),i)]); }
+
 function ttsNote(){
   return groupHasRec() ? '' : `
     <div class="ttsnote">🤖 صَوْتُ هٰذِهِ المَجْموعَةِ آليٌّ مُؤَقَّتًا — تَسْجيلُ المُعَلِّمِ قَريبًا
       <span>Vorläufig Computerstimme – die Aufnahme des Lehrers folgt</span></div>`;
 }
+const T = (ar,de) => LANG==='de' ? de : ar;
 function chooseGroup(i){
   gi=i;
-  document.getElementById('menu-title').textContent='المَجْموعَةُ '+toAr(G().n);
+  document.getElementById('menu-title').textContent = T('المَجْموعَةُ '+G().n, 'Gruppe '+G().n);
   const nt=document.getElementById('tts-note'); if(nt) nt.innerHTML=ttsNote();
   document.getElementById('menu-letters').innerHTML=
     `<span style="font-family:Amiri,serif;font-size:1.6rem;letter-spacing:6px">${hl(G().letters)}</span>`;
@@ -1165,192 +1773,864 @@ function buildWS(){
     </div>`).join('');
 }
 
-/* ==================== لُعْبَةُ الغَيْمَة ==================== */
-const IMG_CLOUD='https://res.cloudinary.com/difo1j3ol/image/upload/v1789820845/%D8%A7%D9%84%D8%BA%D9%8A%D9%85%D8%A9_t7c6j9.png';
-const IMG_TREASURE='https://res.cloudinary.com/difo1j3ol/image/upload/v1789820848/%D8%B5%D9%86%D8%AF%D9%88%D9%82_%D8%A7%D9%84%D9%83%D9%86%D8%B2_bdbjkl.png';
-const IMG_TRASH='https://res.cloudinary.com/difo1j3ol/image/upload/v1789820845/%D8%B3%D9%84%D8%A9_%D8%A7%D9%84%D9%85%D9%87%D9%85%D9%84%D8%A7%D8%AA_s01cun.png';
-function gImages(){
-  const set=(id,src)=>{ const e=document.getElementById(id); if(e&&!e.src.includes('http')) e.src=src; };
-  set('img-cloud',IMG_CLOUD); set('img-treasure',IMG_TREASURE); set('img-trash',IMG_TRASH);
-  set('hi-cloud',IMG_CLOUD);  set('hi-treasure',IMG_TREASURE);  set('hi-trash',IMG_TRASH);
-}
+/* ==================== لُعْبَةُ صَيْدِ الحَرْف ==================== */
+let fOn=false, fScore=0, fLives=3, fTarget=null, fLock=false;
+let fFish=[], fRAF=null, fEnd=0, fTotal=60000, fTimerId=null;
+let fWrongStreak=0, fLastTap=0, fIdleId=null, fBubId=null;
+const letterClips={};
+const SKY_VIDEO='https://res.cloudinary.com/difo1j3ol/video/upload/v1791155470/Text_uz7qj4.mp4';
+const IMG_STATION='https://res.cloudinary.com/difo1j3ol/image/upload/v1791150979/Text_xbrzpv.png';
+const FISH_COLORS=['#FFD65C','#FF9BB3','#8BD16E','#FFA45B','#B69BFF','#6FE0D6','#FF8A7A','#9BC9FF'];
 
-let gOn=false, gScore=0, gLives=3, gRound=0, gSpeed=1.0;
-/* مُدَّةُ سُقوطِ الكَلِمَةِ بِالمِلِّي ثانِيَة */
-const DUR={slow:9000, norm:6000, fast:4000};
-let gMode='slow', gAll=false;
-function setSpeed(m){
-  gMode=m;
-  ['slow','norm','fast'].forEach(x=>{
-    const b=document.getElementById('spd-'+x);
+function letterClip(L){
+  const u=LETTER_AUDIO[L]; if(!u) return null;
+  if(!letterClips[L]) letterClips[L]=Object.assign(new Audio(u),{preload:'none'});
+  return letterClips[L];
+}
+function fSay(){
+  if(!fTarget) return;
+  fLastTap=Date.now();
+  const btn=document.getElementById('f-spk');
+  const c=letterClip(fTarget);
+  if(playing){ playing.pause(); playing.currentTime=0; }
+  document.querySelectorAll('.playing').forEach(b=>b.classList.remove('playing'));
+  if(!c){
+    if('speechSynthesis' in window){ try{
+      speechSynthesis.cancel();
+      const u=new SpeechSynthesisUtterance(fTarget+FATHA);
+      u.lang='ar-SA'; u.rate=.6;
+      btn.classList.add('playing');
+      u.onend=()=>btn.classList.remove('playing');
+      speechSynthesis.speak(u);
+    }catch(e){} }
+    return;
+  }
+  c.currentTime=0; playing=c; btn.classList.add('playing');
+  const done=()=>btn.classList.remove('playing');
+  c.onended=done; c.onerror=done;
+  const p=c.play(); if(p&&p.catch) p.catch(done);
+}
+function setFishTime(m){
+  fTotal = m==='long'?60000 : m==='mid'?45000 : 30000;
+  ['long','mid','short'].forEach(x=>{
+    const b=document.getElementById('ft-'+x);
     if(b) b.classList.toggle('on', x===m);
   });
 }
-function toggleAll(){
-  gAll=!gAll;
-  document.getElementById('mode-all').classList.toggle('on',gAll);
-}
-function gPool(){
-  const src = gAll ? GROUPS : [G()];
-  const out=[];
-  src.forEach(g=>g.words.forEach((w,i)=>{ out.push({w, k:key(g,i)}); }));
-  return out;
-}
-let gSpoken=null, gFall=null, gMatch=false, gLock=false, gTimer=null, gY=0;
+const firstLetter = w => w[0];
+function fLetters(){ return [...new Set(G().words.map(firstLetter))]; }
 
-/* الصَّوْتُ مُتاحٌ دائِمًا: تَسْجيلُ المُعَلِّمِ أَوْ نُطْقٌ آليٌّ مُؤَقَّت */
-function groupHasAudio(){ return true; }
-function groupHasRec(){ return G().words.some((w,i)=>AUDIO[key(G(),i)]); }
-
-function playNow(){
-  document.getElementById('game-intro').style.display='none';
-  document.getElementById('game-area').style.display='';
-  gameStart();
+function openFish(){
+  go('fish'); fishStop();
+  document.getElementById('fish-intro').style.display='';
+  document.getElementById('fish-area').style.display='none';
+  document.getElementById('f-exit').classList.remove('show');
 }
-function openGame(){
-  go('game'); gImages(); gameStop();
-  const lock=document.getElementById('game-locked');
-  const area=document.getElementById('game-area');
-  const intro=document.getElementById('game-intro');
-  area.style.display='none'; intro.style.display='none';
-  if(groupHasAudio() && !anyDone(G().n)){
-    lock.innerHTML=`<div class="glock"><div class="e">🔒</div>
-      <b>اللُّعْبَةُ مُكافَأَة</b>
-      <p>أَنْهِ تَمْرينًا واحِدًا مِنْ هٰذِهِ المَجْموعَةِ لِتَفْتَحَ اللُّعْبَة</p>
-      <p class="de">Schließe zuerst eine Übung dieser Gruppe ab.</p>
-      <span class="btn-row">
-        <button class="btn btn-gold" onclick="startEx1()">👂 ابْدَأِ التَّمْرينَ الأوَّل</button>
-        <button class="btn btn-ghost" onclick="go('menu')">📚 التَّمارين</button>
-      </span></div>`;
-    return;
-  }
-  if(groupHasAudio()){
-    lock.innerHTML=''; intro.style.display='';
-    document.getElementById('allrow').style.display = masteredCount()>=2 ? 'flex':'none';
-    setSpeed(gMode);
-  }
-  else{
-    lock.innerHTML=`<div class="glock"><div class="e">🔒</div>
-      <b>تَسْجيلاتُ هٰذِهِ المَجْموعَةِ لَمْ تُضَفْ بَعْد</b>
-      <p>اللُّعْبَةُ تَحْتاجُ إلى صَوْتِ الكَلِمات</p>
-      <p class="de">Für dieses Spiel werden die Aufnahmen dieser Gruppe benötigt.</p>
-      <span class="btn-row"><button class="btn btn-gold" onclick="go('menu')">📚 التَّمارين</button></span>
-    </div>`;
-  }
+function fishStop(){
+  fOn=false;
+  if(fRAF) cancelAnimationFrame(fRAF); fRAF=null;
+  if(fTimerId) clearInterval(fTimerId); fTimerId=null;
+  if(fIdleId) clearInterval(fIdleId); fIdleId=null;
+  if(fBubId) clearInterval(fBubId); fBubId=null;
 }
-function gameStart(){
-  gameStop();
-  gOn=true; gScore=0; gLives=3; gRound=0;
-  document.getElementById('gwrap').querySelectorAll('.gover,.gpop').forEach(e=>e.remove());
-  gHUD(); gRound1();
+function fishStart(){
+  fishStop();
+  document.getElementById('fish-intro').style.display='none';
+  document.getElementById('fish-area').style.display='';
+  document.getElementById('f-exit').classList.add('show');
+  const sea=document.getElementById('sea');
+  sea.querySelectorAll('.fish,.fover,.fpop,.bub').forEach(e=>e.remove());
+
+  fOn=true; fScore=0; fLives=3; fFish=[]; fWrongStreak=0;
+  fHUD(); spawnAll(); newTarget();
+
+  fEnd=Date.now()+fTotal;
+  const bar=document.getElementById('f-time');
+  bar.style.width='100%'; bar.classList.remove('low');
+  fTimerId=setInterval(()=>{
+    if(!fOn) return;
+    const left=Math.max(0,fEnd-Date.now());
+    const pct=left/fTotal*100;
+    bar.style.width=pct+'%';
+    bar.classList.toggle('low', pct<30);
+    if(left<=0){ clearInterval(fTimerId); fTimerId=null; fishOver('time'); }
+  },150);
+
+  /* تَذْكيرٌ تِلْقائيٌّ بَعْدَ صَمْتٍ طَويل */
+  fIdleId=setInterval(()=>{
+    if(fOn && !fLock && Date.now()-fLastTap>8000) fSay();
+  },1000);
+
+  /* فَقاعاتٌ تَصْعَدُ مِنَ القاع */
+  fBubId=setInterval(()=>{ if(fOn) makeBubble(); }, 650);
+
+  fRAF=requestAnimationFrame(fTick);
 }
-function gameStop(){ gOn=false; if(gTimer) clearInterval(gTimer); gTimer=null; }
-function gHUD(){
-  document.getElementById('g-score').textContent='🎁 '+gScore;
-  document.getElementById('g-hearts').textContent=
-    '❤️'.repeat(Math.max(0,gLives))+'🖤'.repeat(Math.max(0,3-gLives));
+function makeBubble(){
+  const sea=document.getElementById('sea'); if(!sea) return;
+  const b=document.createElement('span'); b.className='bub';
+  const sz=5+Math.random()*13;
+  b.style.width=sz+'px'; b.style.height=sz+'px';
+  b.style.left=(Math.random()*96)+'%';
+  b.style.setProperty('--bx',(Math.random()*34-17)+'px');
+  b.style.animationDuration=(4+Math.random()*3.5)+'s';
+  sea.appendChild(b);
+  setTimeout(()=>b.remove(),8000);
 }
-function gReplay(){ if(gSpoken) play(gSpoken.k, document.getElementById('g-again')); }
-
-function gRound1(){
-  if(!gOn) return;
-  gLock=false;
-  const list=gPool();
-  gSpoken=pick(list);
-  gMatch=Math.random()<0.5;
-  if(gMatch || list.length<2) gFall=gSpoken;
-  else{ do{ gFall=pick(list); }while(gFall.w===gSpoken.w); }
-
-  const el=document.getElementById('g-word');
-  el.className='gfall'; el.textContent=gFall.w;
-  el.style.transform='translateX(-50%)'; el.style.opacity='1';
-  gY=158; el.style.top=gY+'px';
-  ['gb-t','gb-x'].forEach(id=>{
-    const b=document.getElementById(id); b.disabled=false; b.classList.remove('hit'); });
-  setTimeout(()=>play(gSpoken.k), 250);
-
-  const wrap=document.getElementById('gwrap');
-  const floor=wrap.clientHeight-document.querySelector('.gears').offsetHeight-56;
-  /* المُدَّةُ تَقْصُرُ تَدْريجِيًّا ولا تَنْزِلُ عَنْ 60% */
-  const dur=Math.max(DUR[gMode]*0.6, DUR[gMode]-gRound*220);
-  gSpeed=(floor-gY)/(dur/28);
-  if(gTimer) clearInterval(gTimer);
-  gTimer=setInterval(()=>{
-    if(!gOn||gLock) return;
-    gY += 1.15*gSpeed;
-    el.style.top=gY+'px';
-    if(gY>=floor){ clearInterval(gTimer); gTimer=null; gMiss(); }
-  },28);
+function fHUD(){
+  document.getElementById('f-score').textContent='🐟 '+fScore;
+  document.getElementById('f-hearts').textContent=
+    '❤️'.repeat(Math.max(0,fLives))+'🖤'.repeat(Math.max(0,3-fLives));
 }
-function gPut(side){
-  if(!gOn||gLock) return;
-  gLock=true;
-  if(gTimer){ clearInterval(gTimer); gTimer=null; }
-  const el=document.getElementById('g-word');
-  document.querySelectorAll('.gbox').forEach(b=>b.disabled=true);
-  const right = (side==='t') === gMatch;
-  document.getElementById(side==='t'?'gb-t':'gb-x').classList.add('hit');
+function spawnAll(){
+  const sea=document.getElementById('sea');
+  const H=sea.clientHeight, W=sea.clientWidth;
+  const top0=236, usable=Math.max(110, H-top0-34);
+  const ws=shuffle(G().words);
+  const cols=shuffle(FISH_COLORS);
+  ws.forEach((w,i)=>{
+    const el=document.createElement('button');
+    el.className='fish';
+    const dir = i%2===0 ? 1 : -1;
+    const col=cols[i%cols.length];
+    el.innerHTML=`<span class="body" style="background:${col}">
+      <span class="fin">${dir>0?'🐠':'🐟'}</span><span>${w}</span></span>`;
+    sea.appendChild(el);
+    const rows=Math.max(3,Math.min(4,ws.length));
+    const obj={ w, el,
+      x: Math.random()*Math.max(40,W-150),
+      baseY: top0 + (i%rows)*(usable/rows) + Math.random()*8,
+      y:0, v:(0.22+Math.random()*0.3)*dir,
+      ph: Math.random()*6.28, amp: 5+Math.random()*7, caught:false };
+    obj.y=obj.baseY;
+    el.onclick=()=>fCatch(obj);
+    el.style.top=obj.y+'px'; el.style.left=obj.x+'px';
+    fFish.push(obj);
+  });
+}
+function fTick(ts){
+  if(!fOn) return;
+  const sea=document.getElementById('sea');
+  const W=sea.clientWidth;
+  const t=(ts||0)/1000;
+  fFish.forEach(f=>{
+    if(f.caught) return;
+    f.x += f.v;
+    const w=f.el.offsetWidth||130;
+    if(f.x < -w) f.x = W+6;
+    if(f.x > W+6) f.x = -w;
+    /* حَرَكَةٌ انْسِيابِيَّةٌ مَعَ الماء */
+    f.y = f.baseY + Math.sin(t*1.1 + f.ph)*f.amp;
+    const tilt = Math.cos(t*1.1 + f.ph)*4;
+    f.el.style.left=f.x+'px';
+    f.el.style.top=f.y+'px';
+    f.el.style.transform=`rotate(${tilt}deg)`;
+  });
+  fRAF=requestAnimationFrame(fTick);
+}
+function newTarget(){
+  const opts=fLetters().filter(L=>L!==fTarget);
+  fTarget = opts.length ? pick(opts) : pick(fLetters());
+  fWrongStreak=0;
+  const rv=document.getElementById('f-reveal');
+  rv.classList.remove('show'); rv.textContent=fTarget+FATHA;
+  document.getElementById('f-spk').style.display='';
+  document.querySelector('.fSpeakLbl').style.display='';
+  fLock=false; fLastTap=Date.now();
+  setTimeout(fSay, 240);
+}
+function revealTarget(){
+  const rv=document.getElementById('f-reveal');
+  rv.classList.add('show');
+  document.getElementById('f-spk').style.display='none';
+  document.querySelector('.fSpeakLbl').style.display='none';
+}
+function fCatch(f){
+  if(!fOn||fLock||f.caught) return;
+  fLastTap=Date.now();
+  const sea=document.getElementById('sea');
 
-  if(right){
-    gScore++; gRound++;
-    flyTo(el, side==='t'?'gb-t':'gb-x');
-    tone(700,0,.12,'triangle',.13); tone(950,.08,.16,'triangle',.12);
-    gPop(side==='t'?'🎁 +1':'🗑️ +1','var(--green)');
-    gHUD(); setTimeout(gRound1,850);
+  if(firstLetter(f.w)===fTarget){
+    fLock=true; f.caught=true; fScore++;
+    const cx=f.x+(f.el.offsetWidth/2);
+    const rope=document.getElementById('f-rope');
+    const hook=document.getElementById('f-hook');
+    rope.style.left=cx+'px'; rope.style.height='0px';
+    hook.style.left=cx+'px'; hook.style.top='0px';
+    rope.classList.add('go'); hook.classList.add('go');
+    requestAnimationFrame(()=>{
+      rope.style.height=(f.y-4)+'px';
+      hook.style.top=(f.y-4)+'px';
+    });
+    tone(760,0,.12,'triangle',.13); tone(1020,.08,.16,'triangle',.12);
+    fPop('🐟 +1','var(--green)', f.y);
+    fHUD();
+
+    /* تُسْحَبُ السَّمَكَةُ مَعَ السِّنّارَةِ إلى الأَعْلى */
+    setTimeout(()=>{
+      f.el.classList.add('caught');
+      f.el.style.left=cx+'px'; f.el.style.top='-70px';
+      rope.style.height='0px'; hook.style.top='-40px';
+    }, 620);
+
+    setTimeout(()=>{
+      rope.classList.remove('go'); hook.classList.remove('go');
+      hook.style.top='0px';
+      f.el.classList.remove('caught');
+      f.x = f.v>0 ? -140 : sea.clientWidth+8;
+      f.el.style.left=f.x+'px'; f.el.style.top=f.baseY+'px';
+      f.caught=false;
+      if(fOn) newTarget();
+    }, 1380);
+
   }else{
-    gLives--; sndNo(); el.classList.add('bad');
-    gPop(gMatch?'كانَتْ نَفْسَ الكَلِمَة 🎁':'كانَتْ كَلِمَةً أُخْرى 🗑️','var(--red)');
-    gHUD();
-    if(gLives<=0) setTimeout(gameOver,1100); else setTimeout(gRound1,1500);
+    fLives--; fWrongStreak++;
+    sndNo();
+    f.el.classList.add('flee');
+    const oldV=f.v; f.v=oldV*3.4;
+    fPop('❌','var(--red)', f.y);
+    fHUD();
+    setTimeout(()=>{ f.el.classList.remove('flee'); f.v=oldV; },620);
+    /* يُعادُ نُطْقُ الحَرْفِ بَعْدَ الخَطَأ */
+    setTimeout(()=>{ if(fOn && fLives>0) fSay(); }, 700);
+    /* بَعْدَ ثَلاثَةِ أَخْطاءٍ عَلى الحَرْفِ نَفْسِهِ يُكْشَف */
+    if(fWrongStreak>=3) revealTarget();
+    if(fLives<=0){ fLock=true; setTimeout(()=>fishOver('lives'),1000); }
   }
 }
-function gMiss(){
-  if(!gOn||gLock) return;
-  gLock=true; gLives--; sndNo();
-  document.getElementById('g-word').classList.add('bad');
-  document.querySelectorAll('.gbox').forEach(b=>b.disabled=true);
-  gPop('⏰ سَقَطَتْ!','var(--red)'); gHUD();
-  if(gLives<=0) setTimeout(gameOver,1100); else setTimeout(gRound1,1400);
-}
-/* الكَلِمَةُ تَطيرُ إلى الصُّنْدوقِ الَّذي ضُغِطَ فِعْلًا */
-function flyTo(el, boxId){
-  const wrap=document.getElementById('gwrap');
-  const wr=wrap.getBoundingClientRect();
-  const er=el.getBoundingClientRect();
-  const br=document.getElementById(boxId).getBoundingClientRect();
-  const dx=(br.left+br.width/2)-(er.left+er.width/2);
-  const dy=(br.top+br.height/2)-(er.top+er.height/2);
-  el.classList.add('fly');
-  el.style.transform=`translateX(-50%) translate(${dx}px, ${dy}px) scale(.35)`;
-}
-
-function gPop(t,c){
-  const w=document.getElementById('gwrap');
+function fPop(t,c,y){
+  const sea=document.getElementById('sea');
   const p=document.createElement('div');
-  p.className='gpop'; p.textContent=t; p.style.color=c; p.style.top='48%';
-  w.appendChild(p); setTimeout(()=>p.remove(),980);
+  p.className='fpop'; p.textContent=t; p.style.color=c;
+  p.style.top=Math.max(216,y-36)+'px';
+  sea.appendChild(p); setTimeout(()=>p.remove(),1000);
 }
-function gameOver(){
-  gameStop();
-  const bonus=Math.floor(gScore/3);
+function fishOver(why){
+  fishStop();
+  const bonus=Math.floor(fScore/3);
   const nb=bonus>0?addPts(bonus):null;
-  if(gScore>=10){ fanfare(); confetti(40,['🎉','⭐','🎁','✨'],3); }
-  else if(gScore>0){ sndOk(); confetti(16,['⭐','✨'],1); }
-  const ov=document.createElement('div'); ov.className='gover';
+  if(fScore>=10){ fanfare(); confetti(40,['🎉','⭐','🐟','✨'],3); }
+  else if(fScore>0){ sndOk(); confetti(16,['⭐','🐟'],1); }
+  const ov=document.createElement('div'); ov.className='fover';
   ov.innerHTML=`<div>
-    <h3>${gScore>=10?'ما شاءَ الله! 🏆':gScore>=5?'أَحْسَنْت! 👏':'حاوِلْ مَرَّةً أُخْرى 💪'}</h3>
-    <p class="score-line">جَمَعْتَ ${gScore} كَلِمَةً في الكَنْز</p>
+    <h3>${fScore>=10?'ما شاءَ الله! 🏆':fScore>=5?'أَحْسَنْت! 👏':'حاوِلْ مَرَّةً أُخْرى 💪'}</h3>
+    <p class="score-line">${why==='time'?'اِنْتَهى الوَقْت ⏰':'نَفِدَتِ القُلوب 💔'}</p>
+    <p class="score-line">اِصْطَدْتَ ${fScore} كَلِمَة</p>
     ${bonus>0?`<p class="pgain">+${bonus} ⭐ أُضيفَتْ إلى رَصيدِك</p>`:''}
-    <p class="res-de" style="direction:ltr">${gScore} Wörter richtig sortiert</p>
+    <p class="res-de" style="direction:ltr">${fScore} Wörter gefangen</p>
     ${nb?`<div class="newbadge" style="margin-top:12px"><div class="e">${nb.e}</div>
       <b>شارَةٌ جَديدَة: ${nb.ar}</b><span class="de">Neues Abzeichen: „${nb.de}"</span></div>`:''}
     <span class="btn-row">
-      <button class="btn btn-gold" onclick="gameStart()">🔄 مَرَّةً أُخْرى</button>
-      <button class="btn btn-teal" onclick="gameStop();openGame()">📖 الشَّرْحُ والإِعْدادات</button>
-      <button class="btn btn-ghost" onclick="gameStop();go('menu')">📚 التَّمارين</button>
+      <button class="btn btn-gold" onclick="fishStart()">🔄 مَرَّةً أُخْرى</button>
+      <button class="btn btn-teal" onclick="fishStop();openFish()">📖 <span class="ar-txt">الشَّرْح</span><span class="de">Anleitung</span></button>
+      <button class="btn btn-ghost" onclick="fishStop();go('menu')">📚 <span class="ar-txt">التَّمارين</span><span class="de">Übungen</span></button>
     </span></div>`;
-  document.getElementById('gwrap').appendChild(ov);
-  if(nb) setTimeout(()=>{ fanfare(); confetti(46,['🎉','⭐','🎁',nb.e],4); },900);
+  document.getElementById('sea').appendChild(ov);
+  if(nb) setTimeout(()=>{ fanfare(); confetti(46,['🎉','⭐','🐟',nb.e],4); },900);
+}
+
+/* ==================== لُعْبَةُ قِطارِ الحُروف ==================== */
+/* كَلِماتٌ رُباعِيَّةٌ كُلُّ حُروفِها مَفْتوحَة — تُنْطَقُ آلِيًّا */
+const WORDS4=['خَلَقَكَ','رَزَقَكَ','وَجَدَكَ','جَعَلَكَ','نَصَرَكَ','سَأَلَكَ','جَمَعَكَ','شَرَحَكَ'];
+WORDS4.forEach((w,i)=>{ WORD_OF['q'+(i+1)]=w; });
+
+let tOn=false, tScore=0, tLives=3, tCur=null, tLock=false, tCargo=0;
+let tSlots=[], tBank=[], tRAF=null, tX=0, tSpeed=0.34, tBase=0.34, tPuffT=0;
+
+function setTrainSpeed(m){
+  tBase = m==='slow'?0.26 : m==='norm'?0.42 : 0.62;
+  ['slow','norm','fast'].forEach(x=>{
+    const b=document.getElementById('tt-'+x);
+    if(b) b.classList.toggle('on', x===m);
+  });
+}
+function tSay(){ if(tCur) play(tCur.k, document.getElementById('t-spk')); }
+
+/* نُطْقُ الحَرْفِ المُفْرَدِ عِنْدَ وَضْعِه */
+function sayLetter(u){
+  const base=u[0];
+  const c=letterClip(base);
+  if(c){ try{ const a=c.cloneNode(); a.volume=.9; a.play().catch(()=>{}); }catch(e){} return; }
+  if('speechSynthesis' in window){ try{
+    const sp=new SpeechSynthesisUtterance(u); sp.lang='ar-SA'; sp.rate=.65;
+    speechSynthesis.speak(sp);
+  }catch(e){} }
+}
+function whistle(){
+  tone(880,0,.18,'square',.09); tone(660,.16,.26,'square',.08); tone(990,.4,.3,'triangle',.08);
+}
+function openTrain(){
+  go('train'); trainStop();
+  const st=document.getElementById('img-station');
+  if(st && !st.src.includes('http')) st.src=IMG_STATION;
+  const sv=document.getElementById('sky-vid');
+  if(sv && !sv.src){
+    sv.src=SKY_VIDEO; sv.playbackRate=0.5;
+    const pl=sv.play(); if(pl&&pl.catch) pl.catch(()=>{});
+  }
+  document.getElementById('train-intro').style.display='';
+  document.getElementById('train-area').style.display='none';
+  document.getElementById('t-exit').classList.remove('show');
+}
+function trainStop(){ tOn=false; if(tRAF) cancelAnimationFrame(tRAF); tRAF=null; }
+
+function trainStart(){
+  trainStop();
+  document.getElementById('train-intro').style.display='none';
+  document.getElementById('train-area').style.display='';
+  document.getElementById('t-exit').classList.add('show');
+  document.getElementById('rail').querySelectorAll('.tover,.tpop,.puff').forEach(e=>e.remove());
+  tOn=true; tScore=0; tLives=3; tSpeed=tBase; tCargo=0; tCur=null;
+  tHUD(); tNewWord();
+  tRAF=requestAnimationFrame(tTick);
+}
+function tHUD(){
+  document.getElementById('t-score').textContent='🚂 '+tScore;
+  document.getElementById('t-hearts').textContent=
+    '❤️'.repeat(Math.max(0,tLives))+'🖤'.repeat(Math.max(0,3-tLives));
+}
+function tNewWord(){
+  const list=G().words.map((w,i)=>({w,k:key(G(),i)}));
+  /* بَعْدَ خَمْسِ كَلِماتٍ تَظْهَرُ أَحْيانًا كَلِمَةٌ رُباعِيَّة */
+  const useLong = tScore>=5 && Math.random()<0.4;
+  let nw;
+  if(useLong){
+    const i=Math.floor(Math.random()*WORDS4.length);
+    nw={ w:WORDS4[i], k:'q'+(i+1) };
+  }else{
+    do{ nw=pick(list); }while(list.length>1 && tCur && nw.w===tCur.w);
+  }
+  tCur=nw; tLock=false;
+  const u=units(tCur.w);
+  tSlots=u.map(()=>null);
+  tBank=shuffle(u);
+  const tr=document.getElementById('t-train');
+  drawTrain();
+  tX = -(tr.offsetWidth||260) * 0.55;
+  tr.style.left=tX+'px';
+  setTimeout(tSay, 280);
+}
+function cargoHTML(i){
+  if(i!==0 || tCargo<1) return '';
+  const boxes = tCargo<=5 ? '📦'.repeat(tCargo) : '📦×'+tCargo;
+  return `<span class="cargo">${boxes}</span>`;
+}
+function drawTrain(){
+  const tr=document.getElementById('t-train');
+  const n=tSlots.length;
+  /* العَرَبَةُ الأولى (الحَرْفُ الأوَّل) مُلاصِقَةٌ لِلْقاطِرَةِ يَمينًا */
+  let html='';
+  for(let i=n-1;i>=0;i--){
+    const v=tSlots[i];
+    const isNext = !v && tSlots.findIndex(x=>!x)===i;
+    html+=`<button class="wagon${v?' filled':''}${isNext?' next':''}" onclick="tBack(${i})">
+      ${v?v:`<span class="wno">${i+1}</span>`}${cargoHTML(i)}</button>`;
+  }
+  html+='<span class="loco" id="t-loco">🚂</span>';
+  tr.innerHTML=html;
+  tr.style.left=tX+'px';
+
+  const bank=document.getElementById('t-bank');
+  bank.innerHTML='';
+  tBank.forEach((u,i)=>{
+    const b=document.createElement('button');
+    b.className='tChip'; b.textContent=u;
+    b.onclick=()=>tPlace(i);
+    bank.appendChild(b);
+  });
+}
+/* يَخْسَرُ الطِّفْلُ حينَ تَخْتَفي آخِرُ عَرَبَةٍ مِنَ الحافَّةِ اليُمْنى */
+function trainStopX(){
+  const scene=document.getElementById('t-scene');
+  const tr=document.getElementById('t-train');
+  const trW=tr.offsetWidth||260;
+  const startX=-(trW*0.55);
+  /* يَمْضي حَتّى يَتَجاوَزَ عَرْضَ الشاشَةِ كامِلًا */
+  return Math.max(startX+120, scene.clientWidth + 10);
+}
+function makePuff(){
+  const scene=document.getElementById('t-scene');
+  const tr=document.getElementById('t-train');
+  const loco=document.getElementById('t-loco');
+  if(!scene||!tr||!loco) return;
+  const p=document.createElement('span');
+  p.className='puff';
+  const sz=7+Math.random()*8;
+  p.style.width=sz+'px'; p.style.height=sz+'px';
+  p.style.left=(tX + tr.offsetWidth - 16)+'px';
+  p.style.bottom=(59 + 34)+'px';
+  scene.appendChild(p);
+  setTimeout(()=>p.remove(),1600);
+}
+function tTick(ts){
+  if(!tOn) return;
+  const tr=document.getElementById('t-train');
+  tX += tSpeed;
+  tr.style.left=tX+'px';
+  if(!tPuffT || (ts||0)-tPuffT > 330){ tPuffT=(ts||0); makePuff(); }
+  if(tX >= trainStopX() && !tLock){ tLock=true; tArrive(); }
+  tRAF=requestAnimationFrame(tTick);
+}
+function tPlace(bi){
+  if(!tOn||tLock) return;
+  const t=tSlots.findIndex(x=>!x);
+  if(t===-1) return;
+  const u=tBank[bi];
+  tSlots[t]=u; tBank.splice(bi,1);
+  sayLetter(u);
+  tone(560,0,.07,'sine',.05);
+  drawTrain();
+  if(tSlots.every(x=>x)) setTimeout(tCheck,420);
+}
+function tBack(i){
+  if(!tOn||tLock||!tSlots[i]) return;
+  tBank.push(tSlots[i]); tSlots[i]=null; drawTrain();
+}
+function tCheck(){
+  const u=units(tCur.w);
+  const ok=tSlots.every((v,i)=>v===u[i]);
+  const tr=document.getElementById('t-train');
+  if(ok){
+    tLock=true; tScore++; tCargo++;
+    tSpeed=Math.min(tBase*2.1, tSpeed+0.035);
+    tr.querySelectorAll('.wagon').forEach(w=>w.classList.add('ok'));
+    tone(680,0,.14,'triangle',.14); tone(920,.1,.2,'triangle',.13);
+    tPop('🚂 +1 '+tCur.w,'var(--green)');
+    tHUD();
+    setTimeout(()=>play(tCur.k), 420);
+    setTimeout(whistle, 1150);
+    setTimeout(()=>{
+      const scene=document.getElementById('t-scene');
+      const run=setInterval(()=>{
+        tX+=5; tr.style.left=tX+'px';
+        if(tX>scene.clientWidth+40){ clearInterval(run); if(tOn) tNewWord(); }
+      },16);
+    }, 1250);
+  }else{
+    tLives--; sndNo();
+    tr.classList.add('shake');
+    setTimeout(()=>tr.classList.remove('shake'),460);
+    tBank=shuffle([...tBank,...tSlots.filter(Boolean)]);
+    tSlots=tSlots.map(()=>null);
+    drawTrain();
+    tPop('❌ أَعِدِ التَّرْتيب','var(--red)');
+    tHUD();
+    setTimeout(()=>{ if(tOn&&tLives>0) tSay(); }, 620);
+    if(tLives<=0){ tLock=true; setTimeout(()=>trainOver(),900); }
+  }
+}
+function tArrive(){
+  tLives--; sndNo();
+  tPop('⏰ غادَرَ القِطار! '+tCur.w,'var(--red)');
+  tHUD();
+  if(tLives<=0){ setTimeout(()=>trainOver(),1000); return; }
+  setTimeout(()=>{ if(tOn) tNewWord(); }, 1500);
+}
+function tPop(t,c){
+  const rail=document.getElementById('rail');
+  const p=document.createElement('div');
+  p.className='tpop'; p.textContent=t; p.style.color=c; p.style.top='198px';
+  rail.appendChild(p); setTimeout(()=>p.remove(),1000);
+}
+function trainOver(){
+  trainStop();
+  const bonus=Math.floor(tScore/3);
+  const nb=bonus>0?addPts(bonus):null;
+  if(tScore>=10){ fanfare(); confetti(40,['🎉','⭐','🚂','✨'],3); }
+  else if(tScore>0){ sndOk(); confetti(16,['⭐','🚂'],1); }
+  const ov=document.createElement('div'); ov.className='tover';
+  ov.innerHTML=`<div>
+    <h3>${tScore>=10?'ما شاءَ الله! 🏆':tScore>=5?'أَحْسَنْت! 👏':'حاوِلْ مَرَّةً أُخْرى 💪'}</h3>
+    <p class="score-line">رَكَّبْتَ ${tScore} كَلِمَة</p>
+    <p class="score-line">حُمولَةُ القِطار: ${tCargo>0?'📦'.repeat(Math.min(tCargo,8))+(tCargo>8?' ×'+tCargo:''):'—'}</p>
+    ${bonus>0?`<p class="pgain">+${bonus} ⭐ أُضيفَتْ إلى رَصيدِك</p>`:''}
+    <p class="res-de" style="direction:ltr">${tScore} Wörter zusammengesetzt</p>
+    ${nb?`<div class="newbadge" style="margin-top:12px"><div class="e">${nb.e}</div>
+      <b>شارَةٌ جَديدَة: ${nb.ar}</b><span class="de">Neues Abzeichen: „${nb.de}"</span></div>`:''}
+    <span class="btn-row">
+      <button class="btn btn-gold" onclick="trainStart()">🔄 مَرَّةً أُخْرى</button>
+      <button class="btn btn-teal" onclick="trainStop();openTrain()">📖 <span class="ar-txt">الشَّرْح</span><span class="de">Anleitung</span></button>
+      <button class="btn btn-ghost" onclick="trainStop();go('menu')">📚 <span class="ar-txt">التَّمارين</span><span class="de">Übungen</span></button>
+    </span></div>`;
+  document.getElementById('rail').appendChild(ov);
+  if(nb) setTimeout(()=>{ fanfare(); confetti(46,['🎉','⭐','🚂',nb.e],4); },900);
+}
+
+/* ==================== لُعْبَةُ المُتَشابِهات ==================== */
+let wOn=false, wScore=0, wLives=3, wCur=null, wOther=null, wLock=false;
+let wStreak=0, wBestStreak=0, wOpts=[];
+let wLimit=10000, wBase=10000, wLeft=0, wTimerId=null;
+
+function setTwinTime(m){
+  wBase = m==='slow'?10000 : m==='norm'?7000 : 5000;
+  ['slow','norm','fast'].forEach(x=>{
+    const b=document.getElementById('wt-'+x);
+    if(b) b.classList.toggle('on', x===m);
+  });
+}
+function wSay(){ if(wCur) play(wCur.k, document.getElementById('w-spk')); }
+
+/* أَقْرَبُ كَلِمَةٍ شَكْلًا: أَكْثَرُ الوَحَداتِ تَطابُقًا */
+function closestTo(target, list){
+  const tu=units(target.w);
+  let best=null, bestScore=-1;
+  list.forEach(x=>{
+    if(x.w===target.w) return;
+    const xu=units(x.w);
+    let sc=0;
+    for(let i=0;i<Math.min(tu.length,xu.length);i++) if(tu[i]===xu[i]) sc++;
+    if(sc>bestScore){ bestScore=sc; best=x; }
+  });
+  return best;
+}
+/* إِبْرازُ الحَرْفِ الفارِقِ بَيْنَ كَلِمَتَيْن */
+function markDiff(w, other){
+  const a=units(w), b=units(other);
+  return a.map((u,i)=> (b[i]&&b[i]!==u) ? `<span class="wDiff">${u}</span>` : u).join('');
+}
+function openTwin(){
+  go('twin'); twinStop();
+  document.getElementById('twin-intro').style.display='';
+  document.getElementById('twin-area').style.display='none';
+  document.getElementById('w-exit').classList.remove('show');
+}
+function twinStop(){
+  wOn=false;
+  if(wTimerId) clearInterval(wTimerId); wTimerId=null;
+}
+function twinStart(){
+  twinStop();
+  document.getElementById('twin-intro').style.display='none';
+  document.getElementById('twin-area').style.display='';
+  document.getElementById('w-exit').classList.add('show');
+  document.getElementById('twinbox').querySelectorAll('.wover,.wpop').forEach(e=>e.remove());
+  wOn=true; wScore=0; wLives=3; wLimit=wBase; wCur=null;
+  wStreak=0; wBestStreak=0; setStreak(0);
+  wHUD(); wRound();
+}
+function wHUD(){
+  document.getElementById('w-score').textContent='🧺 '+wScore;
+  document.getElementById('w-hearts').textContent=
+    '❤️'.repeat(Math.max(0,wLives))+'🖤'.repeat(Math.max(0,3-wLives));
+}
+function wRound(){
+  if(!wOn) return;
+  wLock=false;
+  const list=G().words.map((w,i)=>({w,k:key(G(),i)}));
+  let t; do{ t=pick(list); }while(list.length>1 && wCur && t.w===wCur.w);
+  wCur=t;
+  wOther=closestTo(t,list) || pick(list.filter(x=>x.w!==t.w));
+
+  /* بَعْدَ خَمْسِ إِجاباتٍ صَحيحَةٍ تَصيرُ البِطاقاتُ ثَلاثًا */
+  wOpts=[wCur,wOther];
+  if(wScore>=5 && list.length>=3){
+    const rest=list.filter(x=>x.w!==wCur.w && x.w!==wOther.w);
+    const third=closestTo(wCur, rest) || pick(rest);
+    if(third) wOpts.push(third);
+  }
+
+  const pair=shuffle(wOpts);
+  const box=document.getElementById('w-pair');
+  box.innerHTML='';
+  pair.forEach(x=>{
+    const b=document.createElement('button');
+    b.className='wCard'; b.textContent=x.w;
+    b.dataset.w=x.w;
+    b.onclick=()=>wPick(b,x);
+    box.appendChild(b);
+  });
+
+  wLeft=wLimit;
+  const bar=document.getElementById('w-time');
+  bar.style.width='100%'; bar.classList.remove('low');
+  if(wTimerId) clearInterval(wTimerId);
+  wTimerId=setInterval(()=>{
+    if(!wOn||wLock) return;
+    wLeft-=100;
+    const pct=Math.max(0,wLeft/wLimit*100);
+    bar.style.width=pct+'%';
+    bar.classList.toggle('low', pct<32);
+    if(wLeft<=0){ clearInterval(wTimerId); wTimerId=null; wTimeUp(); }
+  },100);
+
+  setTimeout(wSay, 260);
+}
+function showDiff(){
+  document.querySelectorAll('#w-pair .wCard').forEach(b=>{
+    const w=b.dataset.w;
+    const other = (w===wCur.w) ? wOther.w : wCur.w;
+    b.innerHTML=markDiff(w, other);
+  });
+}
+/* نُطْقُ الحَرْفَيْنِ الفارِقَيْنِ مُجَرَّدَيْن: «قَ … لا فَ» */
+function sayDiffLetters(){
+  const a=units(wCur.w), b=units(wOther.w);
+  let i=a.findIndex((u,ix)=> b[ix] && b[ix]!==u);
+  if(i<0) return;
+  const right=a[i], wrong=b[i];
+  const speak=(u,delay)=>setTimeout(()=>{
+    const c=letterClip(u[0]);
+    if(c){ try{ const n=c.cloneNode(); n.volume=.95; n.play().catch(()=>{}); }catch(e){} }
+    else if('speechSynthesis' in window){ try{
+      const sp=new SpeechSynthesisUtterance(u); sp.lang='ar-SA'; sp.rate=.6;
+      speechSynthesis.speak(sp);
+    }catch(e){} }
+  }, delay);
+  speak(right, 0);
+  setTimeout(()=>tone(330,0,.14,'sine',.07), 620);   /* فاصِلٌ قَصير */
+  speak(wrong, 900);
+}
+function setStreak(n){
+  wStreak=n; wBestStreak=Math.max(wBestStreak,n);
+  const el=document.getElementById('w-streak');
+  el.textContent='🔥 '+n;
+  el.classList.toggle('on', n>=2);
+  if(n>=2){ el.classList.remove('hot'); void el.offsetWidth; el.classList.add('hot'); }
+}
+function wPick(btn,x){
+  if(!wOn||wLock) return;
+  wLock=true;
+  if(wTimerId){ clearInterval(wTimerId); wTimerId=null; }
+  document.querySelectorAll('#w-pair .wCard').forEach(b=>b.disabled=true);
+
+  if(x.w===wCur.w){
+    wScore++;
+    setStreak(wStreak+1);
+    wLimit=Math.max(4000, wLimit-250);
+    btn.classList.add('right');
+    tone(700,0,.12,'triangle',.13); tone(950,.08,.18,'triangle',.12);
+    /* يَرى الفَرْقَ حَتّى حينَ يُصيب */
+    showDiff();
+    let msg='🧺 +1';
+    if(wStreak>0 && wStreak%5===0){
+      addPts(1); msg='🔥 '+wStreak+' مُتَتالِيَة! +1 ⭐';
+      confetti(20,['🔥','⭐','✨'],1);
+    }
+    wPop(msg,'var(--green)');
+    wHUD();
+    setTimeout(wRound, 1600);
+  }else{
+    wLives--; sndNo();
+    btn.classList.add('wrong');
+    document.querySelectorAll('#w-pair .wCard').forEach(b=>{
+      if(b.dataset.w===wCur.w) b.classList.add('right');
+    });
+    showDiff();
+    setStreak(0);
+    wPop('❌ اُنْظُرْ لِلْحَرْفِ الأَحْمَر','var(--red)');
+    wHUD();
+    setTimeout(()=>{ if(wOn&&wLives>0) sayDiffLetters(); }, 650);
+    setTimeout(()=>{ if(wOn&&wLives>0) wSay(); }, 2300);
+    if(wLives<=0) setTimeout(()=>twinOver('lives'),1600);
+    else setTimeout(wRound, 3400);
+  }
+}
+function wTimeUp(){
+  if(!wOn||wLock) return;
+  wLock=true; wLives--; sndNo();
+  document.querySelectorAll('#w-pair .wCard').forEach(b=>{
+    b.disabled=true;
+    if(b.dataset.w===wCur.w) b.classList.add('right');
+  });
+  showDiff(); setStreak(0);
+  wPop('⏰ اِنْتَهى الوَقْت','var(--red)');
+  wHUD();
+  if(wLives<=0) setTimeout(()=>twinOver('lives'),1300);
+  else setTimeout(wRound, 2200);
+}
+function wPop(t,c){
+  const box=document.getElementById('twinbox');
+  const p=document.createElement('div');
+  p.className='wpop'; p.textContent=t; p.style.color=c; p.style.top='214px';
+  box.appendChild(p); setTimeout(()=>p.remove(),1000);
+}
+function twinOver(why){
+  twinStop();
+  const bonus=Math.floor(wScore/3);
+  const nb=bonus>0?addPts(bonus):null;
+  if(wScore>=10){ fanfare(); confetti(40,['🎉','⭐','🧺','✨'],3); }
+  else if(wScore>0){ sndOk(); confetti(16,['⭐','✨'],1); }
+  const ov=document.createElement('div'); ov.className='wover';
+  ov.innerHTML=`<div>
+    <h3>${wScore>=10?'ما شاءَ الله! 🏆':wScore>=5?'أَحْسَنْت! 👏':'حاوِلْ مَرَّةً أُخْرى 💪'}</h3>
+    <p class="score-line">${why==='time'?'اِنْتَهى الوَقْت ⏰':'نَفِدَتِ القُلوب 💔'}</p>
+    <p class="score-line">مَيَّزْتَ ${wScore} كَلِمَة</p>
+    ${wBestStreak>=2?`<p class="score-line">أَطْوَلُ سِلْسِلَة: 🔥 ${wBestStreak}</p>`:''}
+    ${bonus>0?`<p class="pgain">+${bonus} ⭐ أُضيفَتْ إلى رَصيدِك</p>`:''}
+    <p class="res-de" style="direction:ltr">${wScore} Wörter richtig unterschieden</p>
+    ${nb?`<div class="newbadge" style="margin-top:12px"><div class="e">${nb.e}</div>
+      <b>شارَةٌ جَديدَة: ${nb.ar}</b><span class="de">Neues Abzeichen: „${nb.de}"</span></div>`:''}
+    <span class="btn-row">
+      <button class="btn btn-gold" onclick="twinStart()">🔄 مَرَّةً أُخْرى</button>
+      <button class="btn btn-teal" onclick="twinStop();openTwin()">📖 <span class="ar-txt">الشَّرْح</span><span class="de">Anleitung</span></button>
+      <button class="btn btn-ghost" onclick="twinStop();go('menu')">📚 <span class="ar-txt">التَّمارين</span><span class="de">Übungen</span></button>
+    </span></div>`;
+  document.getElementById('twinbox').appendChild(ov);
+  if(nb) setTimeout(()=>{ fanfare(); confetti(46,['🎉','⭐','🧺',nb.e],4); },900);
+}
+
+/* ==================== سِباقُ القِراءَة ==================== */
+/* كَلِماتٌ إِضافِيَّةٌ ثُلاثِيَّةٌ مَفْتوحَة — مُشَتِّتاتٌ فَقَط، لا تُنْطَقُ أَبَدًا */
+const RACE_EXTRA=[
+ 'كَتَبَ','ذَهَبَ','سَمَعَ','لَعَبَ','جَلَسَ','فَتَحَ','رَسَمَ','حَفَظَ',
+ 'شَكَرَ','نَظَرَ','سَأَلَ','وَصَلَ','حَمَلَ','طَلَبَ','دَرَسَ','قَطَعَ',
+ 'غَسَلَ','بَعَثَ','خَرَجَ','دَخَلَ','صَنَعَ','ضَحَكَ','زَرَعَ','مَسَحَ',
+ 'نَفَعَ','هَرَبَ','وَعَدَ','ثَبَتَ','جَمَعَ','حَصَدَ','خَتَمَ','سَبَقَ'
+];
+
+let rOn=false, rScore=0, rLives=3, rRound=1, rCur=null, rLock=false;
+let rLimit=9000, rLeft=0, rTimerId=null, rStartAt=0, rWins=0;
+
+const RACE_MIN=4000;
+function raceCards(){ return rRound<=2 ? 4 : rRound<=4 ? 6 : 9; }
+function raceLimit(){ return Math.max(RACE_MIN, 9000-(rRound-1)*1000); }
+
+function rSay(){ if(rCur) play(rCur.k, document.getElementById('r-spk')); }
+
+function openRace(){
+  go('race'); raceStop();
+  document.getElementById('race-intro').style.display='';
+  document.getElementById('race-area').style.display='none';
+  document.getElementById('r-exit').classList.remove('show');
+}
+function raceStop(){ rOn=false; if(rTimerId) clearInterval(rTimerId); rTimerId=null; }
+
+function raceStart(){
+  raceStop();
+  document.getElementById('race-intro').style.display='none';
+  document.getElementById('race-area').style.display='';
+  document.getElementById('r-exit').classList.add('show');
+  document.getElementById('racebox').querySelectorAll('.rover,.rpop').forEach(e=>e.remove());
+  rOn=true; rScore=0; rLives=3; rRound=1; rWins=0; rCur=null;
+  raceHUD(); rRoundStart();
+}
+function raceHUD(){
+  document.getElementById('r-score').textContent='🏁 '+rScore;
+  document.getElementById('r-round').textContent='الجَوْلَة '+rRound;
+  document.getElementById('r-hearts').textContent=
+    '❤️'.repeat(Math.max(0,rLives))+'🖤'.repeat(Math.max(0,3-rLives));
+}
+/* زَوايا القَوْسِ الحَقيقِيَّة: البِدايَة 175.6° والنِّهايَة 4.4°
+   والإِبْرَةُ مَرْسومَةٌ بِميلٍ -148.6° — فَالمَدى الصَّحيحُ 188.8° */
+const NEEDLE_START=-35.8, NEEDLE_SPAN=188.8;
+function setNeedle(pct){
+  /* pct: 1 = كُلُّ الوَقْتِ باقٍ (بِدايَةُ الأَخْضَر) … 0 = نِهايَةُ الأَحْمَر */
+  const p=Math.max(0,Math.min(1,pct));
+  const deg = NEEDLE_START + (1-p)*NEEDLE_SPAN;
+  const n=document.getElementById('r-needle');
+  if(n) n.style.transform=`rotate(${deg}deg)`;
+}
+function rRoundStart(){
+  if(!rOn) return;
+  rLock=false;
+  const list=G().words.map((w,i)=>({w,k:key(G(),i)}));
+  let t; do{ t=pick(list); }while(list.length>1 && rCur && t.w===rCur.w);
+  rCur=t;
+
+  /* المُشَتِّتات: مِنَ المَجْموعَةِ أَوَّلًا ثُمَّ مِنَ الكَلِماتِ الإِضافِيَّة */
+  const n=raceCards();
+  const pool=shuffle(list.filter(x=>x.w!==rCur.w).map(x=>x.w));
+  const extra=shuffle(RACE_EXTRA.filter(w=>!list.some(x=>x.w===w)));
+  const others=[...pool,...extra].slice(0,n-1);
+  const cards=shuffle([rCur.w,...others]);
+
+  const grid=document.getElementById('r-grid');
+  grid.style.gridTemplateColumns = n===4 ? 'repeat(2,minmax(86px,118px))'
+    : n===6 ? 'repeat(3,minmax(78px,108px))' : 'repeat(3,minmax(74px,100px))';
+  grid.innerHTML='';
+  cards.forEach(w=>{
+    const b=document.createElement('button');
+    b.className='rCard'; b.textContent=w; b.dataset.w=w;
+    b.onclick=()=>rPick(b,w);
+    grid.appendChild(b);
+  });
+
+  rLimit=raceLimit(); rLeft=rLimit; rStartAt=Date.now();
+  setNeedle(1);
+  document.getElementById('r-gtxt').textContent=(rLimit/1000)+' ث';
+  if(rTimerId) clearInterval(rTimerId);
+  rTimerId=setInterval(()=>{
+    if(!rOn||rLock) return;
+    rLeft-=100;
+    setNeedle(Math.max(0, rLeft/rLimit));
+    if(rLeft<=0){ clearInterval(rTimerId); rTimerId=null; rTimeUp(); }
+  },100);
+
+  setTimeout(rSay, 240);
+}
+function rPick(btn,w){
+  if(!rOn||rLock) return;
+  rLock=true;
+  if(rTimerId){ clearInterval(rTimerId); rTimerId=null; }
+  document.querySelectorAll('#r-grid .rCard').forEach(b=>b.disabled=true);
+  const took=Date.now()-rStartAt;
+
+  if(w===rCur.w){
+    rScore++; rWins++;
+    btn.classList.add('right');
+    tone(700,0,.12,'triangle',.13); tone(950,.08,.18,'triangle',.12);
+    let msg='🏁 +1';
+    if(took<2000){ addPts(1); msg='⚡ سَريع! +1 ⭐'; confetti(18,['⚡','⭐','✨'],1); }
+    rPop(msg,'var(--green)');
+    /* كُلُّ فَوْزٍ يَرْفَعُ الجَوْلَة */
+    rRound++;
+    raceHUD();
+    setTimeout(rRoundStart, 1200);
+  }else{
+    rLives--; sndNo();
+    btn.classList.add('wrong');
+    /* الكَلِمَةُ الصَّحيحَةُ تومِض */
+    document.querySelectorAll('#r-grid .rCard').forEach(b=>{
+      if(b.dataset.w===rCur.w) b.classList.add('flash','right');
+    });
+    rPop('❌ هٰذِهِ هِيَ','var(--red)');
+    raceHUD();
+    setTimeout(()=>{ if(rOn&&rLives>0) rSay(); }, 700);
+    if(rLives<=0) setTimeout(()=>raceOver(),1500);
+    else setTimeout(rRoundStart, 2300);
+  }
+}
+function rTimeUp(){
+  if(!rOn||rLock) return;
+  rLock=true; rLives--; sndNo();
+  setNeedle(0);
+  document.querySelectorAll('#r-grid .rCard').forEach(b=>{
+    b.disabled=true;
+    if(b.dataset.w===rCur.w) b.classList.add('flash','right');
+  });
+  rPop('⏰ اِنْتَهى الوَقْت','var(--red)');
+  raceHUD();
+  if(rLives<=0) setTimeout(()=>raceOver(),1400);
+  else setTimeout(rRoundStart, 2200);
+}
+function rPop(t,c){
+  const box=document.getElementById('racebox');
+  const p=document.createElement('div');
+  p.className='rpop'; p.textContent=t; p.style.color=c; p.style.top='140px';
+  box.appendChild(p); setTimeout(()=>p.remove(),1000);
+}
+function raceOver(){
+  raceStop();
+  const bonus=Math.floor(rScore/3);
+  const nb=bonus>0?addPts(bonus):null;
+  if(rScore>=10){ fanfare(); confetti(45,['🎉','🏁','⭐','⚡'],3); }
+  else if(rScore>0){ sndOk(); confetti(18,['⭐','🏁'],1); }
+  const ov=document.createElement('div'); ov.className='rover';
+  ov.innerHTML=`<div>
+    <h3>${rScore>=10?'قارِئٌ سَريع! 🏆':rScore>=5?'أَحْسَنْت! 👏':'حاوِلْ مَرَّةً أُخْرى 💪'}</h3>
+    <p class="score-line">بَلَغْتَ الجَوْلَةَ ${rRound}</p>
+    <p class="score-line">قَرَأْتَ ${rScore} كَلِمَةً صَحيحَة</p>
+    ${bonus>0?`<p class="pgain">+${bonus} ⭐ أُضيفَتْ إلى رَصيدِك</p>`:''}
+    <p class="res-de" style="direction:ltr">Runde ${rRound} · ${rScore} Wörter</p>
+    ${nb?`<div class="newbadge" style="margin-top:12px"><div class="e">${nb.e}</div>
+      <b>شارَةٌ جَديدَة: ${nb.ar}</b><span class="de">Neues Abzeichen: „${nb.de}"</span></div>`:''}
+    <span class="btn-row">
+      <button class="btn btn-gold" onclick="raceStart()">🔄 مَرَّةً أُخْرى</button>
+      <button class="btn btn-teal" onclick="raceStop();openRace()">📖 <span class="ar-txt">الشَّرْح</span><span class="de">Anleitung</span></button>
+      <button class="btn btn-ghost" onclick="raceStop();go('menu')">📚 <span class="ar-txt">التَّمارين</span><span class="de">Übungen</span></button>
+    </span></div>`;
+  document.getElementById('racebox').appendChild(ov);
+  if(nb) setTimeout(()=>{ fanfare(); confetti(46,['🎉','🏁','⭐',nb.e],4); },900);
 }
 
 /* ==================== النتيجة ==================== */
@@ -1389,7 +2669,10 @@ function finish(which){
   document.getElementById('res-buttons').innerHTML=`
     <button class="btn btn-gold" onclick="${again}">🔁 أَعِدِ التَّمْرين</button>
     ${others.map(n=>`<button class="btn btn-ghost" onclick="${fn[n]}">${lbl[n]}</button>`).join('')}
-    <button class="btn btn-teal" onclick="openGame()">🎁 اللُّعْبَة</button>
+    <button class="btn btn-teal" onclick="openFish()">🎣 الصَّيْد</button>
+    <button class="btn btn-teal" onclick="openTrain()">🚂 القِطار</button>
+    <button class="btn btn-teal" onclick="openTwin()">🧺 المُتَشابِهات</button>
+    <button class="btn btn-teal" onclick="openRace()">🏁 السِّباق</button>
     <button class="btn btn-ghost" onclick="go('home')">🏠 المَجْموعات</button>`;
 
   go('result');
@@ -1402,10 +2685,17 @@ function finish(which){
 }
 
 /* ==================== البدء ==================== */
+applyLangTags();
+setLang(lsGet(LKEY,'ar'));
 buildGroups();
 buildWS();
-drawPoints();
-drawStats();
+
+/* اسْتِعادَةُ آخِرِ مُسْتَخْدِمٍ أَوْ طَلَبُ الاسْم */
+(function initUser(){
+  const cur=lsGet(CKEY,'');
+  if(cur && users().includes(cur)) pickUser(cur);
+  else { drawPoints(); drawStats(); openWho(); }
+})();
 initTTS();
 document.addEventListener('click',()=>{ try{ audio(); }catch(e){} },{once:true});
 </script>
