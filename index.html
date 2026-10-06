@@ -566,6 +566,7 @@ body.lang-ar .speedrow .lbl i,
 body.lang-ar .selfbtn small,
 body.lang-ar .gdoor small{display:none !important}
 body.lang-de .ar-txt{display:none !important}
+body.lang-de .emo-keep,body.lang-ar .emo-keep{display:inline !important}
 body.lang-de .lesson-card .tx small{display:none !important}
 body.lang-de .de{display:inline}
 body.lang-de p.de,body.lang-de div.de,body.lang-de .ht-row .de{display:block}
@@ -950,7 +951,7 @@ body.lang-de .q-label .de,body.lang-de .tap-hint .de{margin-top:0}
       <p class="tLbl">اِضْغَطْ لِتَسْمَعَ الكَلِمَة</p>
 
       <div class="scene" id="t-scene">
-        <div class="station"><img src="" id="img-station" alt="المحطة"></div>
+        <div class="station"><img src="https://res.cloudinary.com/difo1j3ol/image/upload/v1791150979/Text_xbrzpv.png" id="img-station" alt=""></div>
         <div class="track"></div>
         <div class="train" id="t-train"></div>
       </div>
@@ -1373,12 +1374,20 @@ function applyLangTags(){
     .forEach(e=>e.classList.add('ar-txt'));
   /* عَناصِرُ مُخْتَلِطَة: نُغَلِّفُ النَّصَّ العَرَبيَّ المُباشِر */
   const mixed='.q-label,.tap-hint,.sh-task,.speedrow .lbl,.spd,.subtitle,.wLbl,.tLbl,.fSpeakLbl,.ghint,.whoBox .sub';
+  const EMO=/^[\p{Extended_Pictographic}\u200D\uFE0F\u20E3\s]+$/u;
   document.querySelectorAll(mixed).forEach(el=>{
     [...el.childNodes].forEach(n=>{
       if(n.nodeType===3 && n.textContent.trim()){
-        const sp=document.createElement('span');
-        sp.className='ar-txt'; sp.textContent=n.textContent;
-        el.replaceChild(sp,n);
+        /* نُقَسِّمُ النَّصَّ: الإيموجي في عُنْصُرٍ دائِمِ الظُّهور، والعَرَبيَّةُ في ar-txt */
+        const parts=n.textContent.match(/[\p{Extended_Pictographic}\u200D\uFE0F\u20E3]+[\s]*|[^\p{Extended_Pictographic}]+/gu)||[n.textContent];
+        const frag=document.createDocumentFragment();
+        parts.forEach(t=>{
+          if(!t) return;
+          const sp=document.createElement('span');
+          sp.className = EMO.test(t) ? 'emo-keep' : 'ar-txt';
+          sp.textContent=t; frag.appendChild(sp);
+        });
+        el.replaceChild(frag,n);
       }
     });
   });
